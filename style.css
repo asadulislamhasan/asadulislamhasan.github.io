@@ -1,0 +1,278 @@
+/* সম্পূর্ণ আপডেট করা CSS কোড */
+
+/* কালার প্যালেট এবং ভেরিয়েবল */
+:root {
+    --bg-dark-main: #232323; 
+    --bg-dark-secondary: #2c2c2c; 
+    --monitor-bg: #1a1a1a; 
+    
+    /* RGB বর্ডার কালার */
+    --rgb-color-1: #00ffff; 
+    --rgb-color-2: #ff00ff; 
+    --rgb-color-3: #ffff00; 
+    
+    --text-primary: #ffffff; 
+    --text-secondary: #e0e0e0; 
+    
+    /* আসল ফেসবুক ভেরিফাইড নীল ও বাটন নীল */
+    --verified-blue-actual: #1877f2; /* আসল ফেসবুক ভেরিফাইড নীল রঙ */
+    --facebook-blue: #1877f2; 
+    --facebook-hover-blue: #1256b9; 
+
+    /* লোডিং ডটসের রঙ */
+    --dot-red: #ff3b30; 
+    --dot-yellow: #ffcc00; 
+    --dot-green: #4cd964; 
+    
+    --star-color: #ffffff; 
+}
+
+body {
+    background: var(--bg-dark-main);
+    background: linear-gradient(135deg, var(--bg-dark-main) 0%, var(--bg-dark-secondary) 100%); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-primary);
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* ছবির মতো নিচের ডানদিকে স্টার */
+.bottom-right-star {
+    position: absolute;
+    bottom: 50px; 
+    right: 50px;
+    width: 25px;
+    height: 25px;
+    background-color: var(--star-color);
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 67% 57%, 78% 91%, 50% 70%, 22% 91%, 33% 57%, 2% 35%, 39% 35%);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    z-index: 0;
+}
+
+.container {
+    padding: 50px;
+    border-radius: 15px; 
+    background: var(--monitor-bg); 
+    backdrop-filter: blur(5px); 
+    max-width: 90%;
+    width: 650px; 
+    position: relative;
+    z-index: 1; 
+
+    /* অ্যানিমেটেড RGB বর্ডার ডিজাইন */
+    border: 3px solid transparent; 
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    border-image: linear-gradient(
+        45deg, 
+        var(--rgb-color-1), 
+        var(--rgb-color-2),
+        var(--rgb-color-3),
+        var(--rgb-color-1)
+    ) 1;
+    border-image-slice: 1; 
+
+    /* বর্ডারের গ্লো ইফেক্ট ও অ্যানিমেশন */
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.4), 
+        0 0 40px rgba(255, 0, 255, 0.4), 
+        0 0 60px rgba(255, 255, 0, 0.4), 
+        0 0 80px rgba(0, 0, 0, 0.8); 
+    animation: rgb-border-anim 8s linear infinite, glow-pulse 4s infinite alternate ease-in-out; 
+}
+
+/* RGB বর্ডার অ্যানিমেশন (রঙের ঘূর্ণন) */
+@keyframes rgb-border-anim {
+    0% { border-image-source: linear-gradient(45deg, var(--rgb-color-1), var(--rgb-color-2), var(--rgb-color-3), var(--rgb-color-1)); }
+    25% { border-image-source: linear-gradient(45deg, var(--rgb-color-2), var(--rgb-color-3), var(--rgb-color-1), var(--rgb-color-2)); }
+    50% { border-image-source: linear-gradient(45deg, var(--rgb-color-3), var(--rgb-color-1), var(--rgb-color-2), var(--rgb-color-3)); }
+    75% { border-image-source: linear-gradient(45deg, var(--rgb-color-1), var(--rgb-color-2), var(--rgb-color-3), var(--rgb-color-1)); }
+    100% { border-image-source: linear-gradient(45deg, var(--rgb-color-1), var(--rgb-color-2), var(--rgb-color-3), var(--rgb-color-1)); }
+}
+
+/* বর্ডারের গ্লো ইফেক্টের পালস অ্যানিমেশন */
+@keyframes glow-pulse {
+    0%, 100% {
+        box-shadow: 
+            0 0 20px rgba(0, 255, 255, 0.4), 
+            0 0 40px rgba(255, 0, 255, 0.4), 
+            0 0 60px rgba(255, 255, 0, 0.4), 
+            0 0 80px rgba(0, 0, 0, 0.8);
+    }
+    50% {
+        box-shadow: 
+            0 0 30px rgba(0, 255, 255, 0.6), 
+            0 0 50px rgba(255, 0, 255, 0.6), 
+            0 0 70px rgba(255, 255, 0, 0.6), 
+            0 0 90px rgba(0, 0, 0, 0.9);
+    }
+}
+
+
+/* লেখার স্টাইল ও গ্লো ইফেক্ট */
+.heading {
+    font-size: 3.5em;
+    font-weight: 700; 
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px; 
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    height: 1.2em; 
+    overflow: hidden; 
+    /* "Launching Soon" লেখার জন্য গ্লো ইফেক্ট */
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.5), 
+        0 0 20px rgba(255, 255, 255, 0.3), 
+        0 0 30px rgba(255, 255, 255, 0.2);
+    animation: text-glow-pulse 3s infinite alternate ease-in-out; 
+}
+
+/* টেক্সট গ্লো পালস অ্যানিমেশন */
+@keyframes text-glow-pulse {
+    0%, 100% {
+        text-shadow: 
+            0 0 10px rgba(255, 255, 255, 0.5), 
+            0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        text-shadow: 
+            0 0 15px rgba(255, 255, 255, 0.8), 
+            0 0 25px rgba(255, 255, 255, 0.5);
+    }
+}
+
+/* "Launching Soon" লেখার ঢেউয়ের অ্যানিমেশন */
+.wave-text span {
+    display: inline-block;
+    animation: wave 2s ease-in-out infinite; 
+    animation-delay: calc(0.15s * var(--i)); 
+}
+
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-10px); 
+    }
+    50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(10px); 
+    }
+}
+
+
+.sub-heading {
+    font-size: 1.2em; 
+    font-weight: 400;
+    color: var(--text-secondary); 
+    margin-bottom: 40px;
+}
+
+/* স্লো এবং স্মুথ লোডার ডটস */
+.loader-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 40px 0;
+}
+.loader-dots .dot {
+    width: 18px; 
+    height: 18px; 
+    border-radius: 50%;
+    margin: 0 12px; 
+    animation: bounce-dots 1.5s infinite ease-in-out both; 
+    opacity: 0; 
+}
+.loader-dots .dot.red { background-color: var(--dot-red); }
+.loader-dots .dot.yellow { background-color: var(--dot-yellow); animation-delay: -0.5s; } 
+.loader-dots .dot.green { background-color: var(--dot-green); animation-delay: -1s; } 
+
+@keyframes bounce-dots {
+    0%, 100% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1); 
+        opacity: 1;
+    }
+}
+
+
+/* প্রোফাইল তথ্য এবং ভেরিফাইড স্টাইল */
+.profile-info {
+    margin-bottom: 30px;
+}
+
+.follow-text {
+    font-size: 1em;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.social-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.profile-name {
+    font-size: 1.3em; 
+    font-weight: 600;
+    margin-right: 8px;
+    color: var(--text-primary);
+}
+
+/* আসল ফেসবুক ভেরিফাইড ব্যাজ ডিজাইন (পুনরায় পরিবর্তন করা হয়েছে) */
+.verified-icon {
+    /* Font Awesome আইকনটিকে সরাসরি ব্যবহার করা হচ্ছে */
+    color: var(--verified-blue-actual); /* আইকনের রঙ নীল (আসল ব্যাজের বৃত্তের রঙ) */
+    font-size: 1.2em; /* ব্যাজের আকার */
+    /* কোনো ব্যাকগ্রাউন্ড বা প্যাডিং যোগ করা হচ্ছে না, কারণ Font Awesome এর 'fa-check-circle' নিজে থেকেই বৃত্তের মধ্যে চেকমার্ক দেখায় */
+    text-shadow: 0 0 5px rgba(24, 119, 242, 0.5); /* হালকা নীল গ্লো */
+}
+
+/* নীল Follow Us বাটন */
+.facebook-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 25px; 
+    background-color: var(--facebook-blue); 
+    color: var(--text-primary); 
+    text-decoration: none;
+    border-radius: 50px; 
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(24, 119, 242, 0.4); 
+}
+
+.facebook-link i {
+    margin-right: 8px;
+}
+
+.facebook-link:hover {
+    background-color: var(--facebook-hover-blue); 
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 15px rgba(24, 119, 242, 0.6);
+}
+
+.message {
+    font-style: italic;
+    color: var(--text-secondary); 
+    margin-top: 25px;
+    font-size: 0.9em; 
+}
