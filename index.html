@@ -1,35 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hasan | Student • Manager • Content Creator</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> হাসান - ব্যক্তিগত ওয়েবসাইট</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-    <div class="logo">Hasan<span>World</span></div>
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <ul id="nav-menu">
-        <li><a class="active" href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="travel.html">Travel</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-</nav>
+    <header class="header">
+        <div class="logo">হাসান</div>
+        
+        <button class="menu-toggle" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i>
+        </button>
 
-<!-- HERO SECTION -->
-<section class="hero-home">
-    <div class="hero-content">
-        <h1>Hello, I'm <span>Hasan</span></h1>
-        <p>Student • Manager • Content Creator • Traveler</p>
-        <a href="about.html" class="btn">Explore My World</a>
-    </div>
-</section>
+        <nav class="nav-links">
+            <a href="index.html" class="active">হোম</a>
+            <a href="about.html">আমার সম্পর্কে</a>
+            <a href="portfolio.html">পোর্টফোলিও</a>
+            <a href="contact.html">যোগাযোগ</a>
+        </nav>
+    </header>
 
-<script src="script.js"></script>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>স্বাগতম! আমি হাসান।</h1>
+            <h2></h2>
+            <p>আপনার ব্যক্তিগত জীবন, কাজ এবং ভ্রমণ অভিজ্ঞতা এই ওয়েবসাইটে সুন্দরভাবে সাজানো আছে। নতুন কিছু শেখা এবং সৃষ্টি করাই আমার লক্ষ্য।</p>
+            <a href="about.html" class="cta-button">আমার সম্পর্কে জানুন</a>
+        </div>
+    </section>
+
+    <section class="notice-section">
+        <h3>সাম্প্রতিক নোটিস ও হাইলাইটস</h3>
+        <div class="notice-container">
+            <div class="notice-card">
+                <h4>নতুন কিছু নেই !</h4>
+                <p>বর্তমানে আমি কোনো প্রজেক্টে কাজ করছি না।</p>
+            </div>
+            <div class="notice-card">
+                <h4>নতুন কিছু নেই !/h4>
+                <p>...</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; <span id="year"></span> হাসান. সর্বস্বত্ব সংরক্ষিত।</p>
+        <div class="social-links">
+            <a href="#" target="_blank">LinkedIn</a> | 
+            <a href="#" target="_blank">Twitter</a> | 
+            <a href="#" target="_blank">GitHub</a>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
