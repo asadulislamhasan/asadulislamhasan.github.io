@@ -1,125 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hasan | Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasan | Student • Manager • Content Creator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <nav>
-            <div class="logo">Hasan<span>.</span></div>
-            <ul>
-                <li><a href="#" class="nav-link active" data-target="home">Home</a></li>
-                <li><a href="#" class="nav-link" data-target="about">About</a></li>
-                <li><a href="#" class="nav-link" data-target="skills">Skills</a></li>
-                <li><a href="#" class="nav-link" data-target="contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<nav class="navbar">
+    <div class="logo">Hasan<span>World</span></div>
+    <ul>
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="travel.html">Travel</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
 
-    <div class="main-content">
-        
-        <section id="home" class="content-section active">
-            <div class="hero">
-                <h1>Hello, I'm <span>Hasan</span></h1>
-                <p>A Passionate Web Developer & Tech Enthusiast</p>
-                
-                <div class="home-about">
-                    <p class="about-snippet">
-                        I'm Hasan, a dedicated developer from Bangladesh. My focus is on creating modern,
-                        clean, and high-performance websites. Learn more about my professional journey in the 'About' section.
-                    </p>
-                </div>
-
-                <div class="notice-box">
-                    <h3><i class="fas fa-bullhorn"></i> Important Notice</h3>
-                    <p>
-                        Currently available for new freelance projects starting from December 2025. 
-                        Feel free to contact me for quotes.
-                    </p>
-                    </div>
-
-                <a href="#" class="btn nav-link" data-target="contact">Hire Me</a>
-            </div>
-        </section>
-
-        <section id="about" class="content-section">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <p>
-                    I'm Hasan — a dedicated and passionate web developer from Bangladesh. I create modern, 
-                    clean, and high-performance websites with smooth UI/UX. My technical background allows me 
-                    to focus not just on aesthetics but also on functionality and speed. I am constantly learning 
-                    new technologies to stay ahead in the fast-paced world of web development.
-                </p>
-            </div>
-        </section>
-
-        <section id="skills" class="content-section">
-            <h2>My Skills</h2>
-            <div class="skill-box">
-                <div>HTML5</div>
-                <div>CSS3 (Flexbox/Grid)</div>
-                <div>JavaScript (ES6+)</div>
-                <div>Responsive Design</div>
-                <div>GitHub & Git</div>
-                <div>UI/UX Principles</div>
-                <div>SEO Basics</div>
-            </div>
-        </section>
-
-        <section id="contact" class="content-section">
-            <h2>Contact Me</h2>
-            <div class="contact-details">
-                <p><i class="fas fa-envelope"></i> Email: hasan645@goatmail.uk</p>
-                <p><i class="fas fa-phone"></i> Phone: **+8801XXXXXXXXX**</p>
-                <p><i class="fas fa-map-marker-alt"></i> Location: **Bangladesh**</p>
-            </div>
-        </section>
-
-    </div> <footer>
-        <p>© 2025 Hasan. All rights reserved.</p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const sections = document.querySelectorAll('.content-section');
-
-            // Function to show the target section
-            function showSection(targetId) {
-                // Hide all sections
-                sections.forEach(section => {
-                    section.classList.remove('active');
-                });
-                // Show the targeted section
-                document.getElementById(targetId).classList.add('active');
-            }
-
-            // Function to handle link clicks
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove 'active' class from all links
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    // Add 'active' class to the clicked link
-                    this.classList.add('active');
-
-                    const targetId = this.getAttribute('data-target');
-                    showSection(targetId);
-                });
-            });
-
-            // Show 'home' section on initial load (if not already handled by CSS)
-            // showSection('home');
-        });
-    </script>
+<section class="hero colorful-gradient">
+    <h1>Hi, I'm <span>Hasan</span></h1>
+    <p>Student • Manager • Content Creator • Traveler</p>
+    <a href="about.html" class="btn">Explore My World</a>
+</section>
 
 </body>
 </html>
