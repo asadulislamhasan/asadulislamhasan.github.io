@@ -2,28 +2,20 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: Poppins, sans-serif;
 }
 
 body {
-    background: #f5f7fa;
-    color: #333;
+    background: #121212;
+    color: white;
 }
 
-/* NAVBAR */
-header {
-    background: white;
+/* NAV */
+.navbar {
     width: 100%;
-    border-bottom: 1px solid #eee;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-}
-
-nav {
-    max-width: 1100px;
-    margin: auto;
-    padding: 15px;
+    padding: 15px 40px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,266 +27,113 @@ nav {
 }
 
 .logo span {
-    color: #007bff; /* Primary Blue Accent */
+    color: #ffdd33;
 }
 
-nav ul {
+/* MENU */
+.navbar ul {
     display: flex;
     list-style: none;
 }
 
-nav ul li {
-    margin-left: 20px;
+.navbar ul li {
+    margin-left: 25px;
 }
 
-/* Nav Link Styling for better look */
-nav ul li a {
+.navbar ul li a {
     text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    padding: 5px 10px;
-    border-radius: 4px;
-    transition: background 0.3s;
+    color: #ddd;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
-nav ul li a:hover,
-nav ul li a.active {
-    color: #007bff;
-    background: #e6f0ff; /* Light blue background for active/hover */
+.navbar ul li a:hover,
+.active {
+    color: #ffdd33 !important;
 }
 
-/* MAIN CONTENT AREA - Crucial for non-scrolling tab system */
-.main-content {
-    padding-top: 60px; /* Space for fixed header */
-    min-height: calc(100vh - 80px); /* Ensure content takes most of the screen */
+/* HERO */
+.colorful-gradient {
+    background: linear-gradient(135deg, #ff512f, #dd2476, #24c6dc, #514a9d);
+    background-size: 300% 300%;
+    animation: gradient 10s ease infinite;
 }
 
-/* SECTION HIDING/SHOWING LOGIC (Tab View) */
-.content-section {
-    display: none; /* Hide all sections by default */
-    max-width: 1000px;
-    margin: 40px auto; /* Reduced margin for compact view */
-    padding: 20px;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-.content-section.active {
-    display: block; /* Show only the active section */
-    opacity: 1;
-}
-
-
-/* HERO SECTION STYLES (HOME) */
 .hero {
-    min-height: calc(100vh - 120px); /* Adjust height */
-    background: linear-gradient(to right, #00204a, #005792);
-    color: white;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 40px 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .hero h1 {
-    font-size: 48px;
+    font-size: 55px;
     font-weight: 700;
 }
 
-.hero h1 span {
-    color: #ffe600; /* Yellow Accent */
+.hero span {
+    color: #ffdd33;
 }
 
-.hero p {
-    margin-top: 10px;
-    font-size: 18px;
-}
-
-/* Home About Snippet */
-.home-about {
-    margin: 30px 0;
-    max-width: 600px;
-}
-
-.about-snippet {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 8px;
-    font-style: italic;
-    font-size: 16px;
-}
-
-/* Notice Box Styles (Unique feature) */
-.notice-box {
-    width: 90%;
-    max-width: 500px;
-    margin: 20px 0;
-    padding: 20px;
-    background: #ffe600; /* Yellow background for attention */
-    color: #00204a;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.notice-box h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.notice-box h3 i {
-    margin-right: 8px;
-    color: #e74c3c; /* Red icon for urgency */
-}
-
-.notice-box p {
-    margin-top: 0;
-    font-size: 16px;
-    line-height: 1.4;
-}
-
-/* Button */
 .btn {
     margin-top: 20px;
-    background: #ffe600;
-    padding: 12px 25px;
+    padding: 12px 28px;
+    background: #ffdd33;
+    color: black;
     border-radius: 30px;
-    color: #000;
     text-decoration: none;
     font-weight: 600;
-    transition: background 0.3s, transform 0.3s;
 }
 
-.btn:hover {
-    background: #ffcc00;
-    transform: translateY(-2px);
-}
-
-/* Standard Section Headings */
-h2 {
-    font-size: 32px;
-    margin-bottom: 25px;
-    font-weight: 700;
-    text-align: center;
-    color: #007bff;
-    border-bottom: 3px solid #eee;
-    display: inline-block;
-    padding-bottom: 5px;
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
-}
-
-/* ABOUT */
-.about-content {
-    max-width: 700px;
-    margin: auto;
-    text-align: center;
-    font-size: 16px;
-}
-
-/* SKILLS */
-.skill-box {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
-}
-
-.skill-box div {
-    background: #007bff;
-    color: white;
-    padding: 12px 25px;
-    font-weight: 600;
-    border-radius: 8px;
-    transition: background 0.3s;
-}
-
-.skill-box div:hover {
-    background: #0056b3;
-}
-
-/* CONTACT */
-.contact-details {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.contact-details p {
-    font-size: 18px;
-    margin: 10px 0;
-    font-weight: 500;
-}
-
-.contact-details i {
-    color: #007bff;
-    margin-right: 10px;
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
+/* PAGE */
+.page {
+    max-width: 900px;
+    margin: 80px auto;
     padding: 20px;
-    background: #00204a;
-    color: white;
-    margin-top: 40px; /* Space above footer */
+    text-align: center;
 }
 
-/* RESPONSIVENESS (মোবাইলের জন্য বিশেষভাবে আপডেট করা হয়েছে) */
-@media (max-width: 768px) {
-    /* 1. ন্যাভিগেশন বার ঠিক করা */
-    nav {
-        flex-direction: column;
-        text-align: center;
-        padding: 10px 15px;
-    }
+/* COLORFUL CARD */
+.colorful-card {
+    background: linear-gradient(135deg, #ff512f, #dd2476);
+    padding: 30px;
+    border-radius: 12px;
+}
 
-    nav ul {
-        margin-top: 5px;
-        flex-wrap: wrap; /* ছোট স্ক্রিনে লিঙ্কগুলো যেন নিচে নামে */
-        justify-content: center;
-    }
+/* TRAVEL */
+.travel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+}
 
-    nav ul li {
-        margin: 5px 10px;
-    }
+.travel-card {
+    background: #1e1e1e;
+    border: 1px solid #ffdd33;
+    padding: 20px;
+    border-radius: 10px;
+    font-weight: 600;
+}
 
-    /* 2. হিরো সেকশনের টেক্সট সাইজ ও প্যাডিং ঠিক করা */
-    .hero {
-        padding: 60px 10px 40px; 
-        min-height: auto; 
-    }
+/* PROJECT */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
 
-    .hero h1 {
-        font-size: 30px;
-    }
-    
-    .hero p {
-        font-size: 16px;
-    }
-    
-    /* 3. সেকশন মার্জিন ঠিক করা */
-    .content-section {
-        margin: 20px auto;
-        padding: 10px;
-    }
-    
-    h2 {
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-
-    .notice-box {
-        max-width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-    }
+.project-card {
+    background: #1e1e1e;
+    border: 2px solid #ffdd33;
+    padding: 25px;
+    border-radius: 10px;
+    font-weight: 600;
 }
