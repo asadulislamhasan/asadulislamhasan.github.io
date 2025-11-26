@@ -11,7 +11,8 @@
 <!-- NAVBAR -->
 <nav class="navbar">
     <div class="logo">Hasan<span>World</span></div>
-    <ul>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <ul id="nav-menu">
         <li><a class="active" href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="travel.html">Travel</a></li>
@@ -21,11 +22,14 @@
 </nav>
 
 <!-- HERO SECTION -->
-<section class="hero">
-    <h1>Hello, I'm <span>Hasan</span></h1>
-    <p>Student • Manager • Content Creator • Traveler</p>
-    <a href="about.html" class="btn">Explore My World</a>
+<section class="hero-home">
+    <div class="hero-content">
+        <h1>Hello, I'm <span>Hasan</span></h1>
+        <p>Student • Manager • Content Creator • Traveler</p>
+        <a href="about.html" class="btn">Explore My World</a>
+    </div>
 </section>
 
+<script src="script.js"></script>
 </body>
 </html>
