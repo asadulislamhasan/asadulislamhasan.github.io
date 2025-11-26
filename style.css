@@ -10,7 +10,7 @@ body {
     color: #333;
 }
 
-/* NAV - Same as before, looks professional */
+/* NAVBAR */
 header {
     background: white;
     width: 100%;
@@ -35,7 +35,7 @@ nav {
 }
 
 .logo span {
-    color: #007bff;
+    color: #007bff; /* Primary Blue Accent */
 }
 
 nav ul {
@@ -106,7 +106,7 @@ nav ul li a.active {
 }
 
 .hero h1 span {
-    color: #ffe600;
+    color: #ffe600; /* Yellow Accent */
 }
 
 .hero p {
@@ -248,36 +248,53 @@ footer {
     margin-top: 40px; /* Space above footer */
 }
 
-/* RESPONSIVENESS */
+/* RESPONSIVENESS (মোবাইলের জন্য বিশেষভাবে আপডেট করা হয়েছে) */
 @media (max-width: 768px) {
+    /* 1. ন্যাভিগেশন বার ঠিক করা */
     nav {
         flex-direction: column;
         text-align: center;
+        padding: 10px 15px;
     }
 
     nav ul {
-        margin-top: 10px;
+        margin-top: 5px;
+        flex-wrap: wrap; /* ছোট স্ক্রিনে লিঙ্কগুলো যেন নিচে নামে */
+        justify-content: center;
     }
 
     nav ul li {
-        margin: 0 10px;
+        margin: 5px 10px;
+    }
+
+    /* 2. হিরো সেকশনের টেক্সট সাইজ ও প্যাডিং ঠিক করা */
+    .hero {
+        padding: 60px 10px 40px; 
+        min-height: auto; 
     }
 
     .hero h1 {
-        font-size: 36px;
+        font-size: 30px;
     }
     
     .hero p {
         font-size: 16px;
     }
-
+    
+    /* 3. সেকশন মার্জিন ঠিক করা */
     .content-section {
         margin: 20px auto;
         padding: 10px;
     }
     
     h2 {
-        font-size: 28px;
+        font-size: 24px;
         margin-bottom: 20px;
+    }
+
+    .notice-box {
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
