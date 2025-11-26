@@ -7,18 +7,18 @@
 
 body {
     background: #121212;
-    color: white;
+    color: #fff;
 }
 
-/* NAV */
+/* NAVBAR */
 .navbar {
     width: 100%;
     padding: 15px 40px;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
 }
 
 .logo {
@@ -53,10 +53,16 @@ body {
 }
 
 /* HERO */
-.colorful-gradient {
-    background: linear-gradient(135deg, #ff512f, #dd2476, #24c6dc, #514a9d);
-    background-size: 300% 300%;
-    animation: gradient 10s ease infinite;
+.hero {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #ffdd33, #ff3333, #33ff77, #3399ff);
+    background-size: 400% 400%;
+    animation: gradient 12s ease infinite;
 }
 
 @keyframes gradient {
@@ -65,22 +71,13 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-.hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
 .hero h1 {
-    font-size: 55px;
+    font-size: 50px;
     font-weight: 700;
 }
 
 .hero span {
-    color: #ffdd33;
+    color: #fff;
 }
 
 .btn {
@@ -101,39 +98,23 @@ body {
     text-align: center;
 }
 
-/* COLORFUL CARD */
-.colorful-card {
-    background: linear-gradient(135deg, #ff512f, #dd2476);
-    padding: 30px;
-    border-radius: 12px;
-}
-
 /* TRAVEL */
-.travel-grid {
+.travel-grid, .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 20px;
 }
 
-.travel-card {
-    background: #1e1e1e;
-    border: 1px solid #ffdd33;
-    padding: 20px;
-    border-radius: 10px;
-    font-weight: 600;
-}
-
-/* PROJECT */
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.project-card {
-    background: #1e1e1e;
-    border: 2px solid #ffdd33;
+.travel-card, .project-card {
     padding: 25px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 600;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
+
+/* COLOR CLASSES */
+.yellow { background: #ffdd33; color: #000; }
+.red { background: #ff3333; color: #fff; }
+.green { background: #33ff77; color: #000; }
+.blue { background: #3399ff; color: #fff; }
