@@ -1,70 +1,171 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> হাসান - ব্যক্তিগত ওয়েবসাইট</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
-    <link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hasan – Personal Website</title>
+  <style>
+    /* Body and overall font */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #0c0f16;
+      color: #e0e0e0;
+      background: radial-gradient(circle at top left, #0c0f16, #1b1e2a);
+    }
+
+    /* Header with glowing gradient */
+    header {
+      padding: 50px 0;
+      text-align: center;
+      background: linear-gradient(135deg, #0f1321, #1c1f2c, #2b2f3f);
+      box-shadow: 0 5px 30px rgba(255, 160, 80, 0.2);
+    }
+
+    header h1 {
+      font-size: 46px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      background: linear-gradient(90deg, #ff7c4f, #ffb36b, #ffd38a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 12px rgba(255,124,79,0.45);
+    }
+
+    header p {
+      font-size: 20px;
+      opacity: 0.85;
+      margin-top: -5px;
+      letter-spacing: 0.5px;
+      color: #ffd38a;
+    }
+
+    /* Container styling */
+    .container {
+      width: 92%;
+      max-width: 950px;
+      margin: 50px auto;
+    }
+
+    /* Section styling with soft neon glow */
+    .section {
+      margin-bottom: 45px;
+      padding: 28px;
+      background: #161b2c;
+      border-left: 5px solid #ff9f60;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(255,159,96,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 35px rgba(255,159,96,0.3);
+    }
+
+    .section h2 {
+      font-size: 30px;
+      color: #ffa76b;
+      margin-bottom: 15px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section p {
+      font-size: 17px;
+      line-height: 1.75;
+      color: #e2e2e2;
+    }
+
+    /* Footer styling */
+    footer {
+      margin-top: 60px;
+      padding: 35px 20px;
+      text-align: center;
+      background: #0a0c14;
+      border-top: 2px solid #222538;
+    }
+
+    footer p {
+      font-size: 16px;
+      opacity: 0.85;
+      margin: 6px 0;
+    }
+
+    footer a {
+      color: #ffa76b;
+      text-decoration: none;
+      margin: 0 12px;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #ffcf9e;
+    }
+
+    .social-icons img {
+      width: 32px;
+      margin: 0 10px;
+      vertical-align: middle;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s ease;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.2);
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <h1>Asadul Islam Hasan</h1>
+    <p>Student • Traveler • Dreamer</p>
+  </header>
 
-    <header class="header">
-        <div class="logo">হাসান</div>
-        
-        <button class="menu-toggle" aria-label="Toggle navigation menu">
-            <i class="fas fa-bars"></i>
-        </button>
+  <div class="container">
 
-        <nav class="nav-links">
-            <a href="index.html" class="active">হোম</a>
-            <a href="about.html">আমার সম্পর্কে</a>
-            <a href="portfolio.html">পোর্টফোলিও</a>
-            <a href="contact.html">যোগাযোগ</a>
-        </nav>
-    </header>
+    <div class="section">
+      <h2>About Me</h2>
+      <p>
+        Hi, I'm Hasan. I’m currently studying in <strong>Class Eleven</strong> at
+        <strong>Munshiganj Technical School & College</strong>. I love learning new things,
+        building unique projects, and exploring beautiful places across Bangladesh.
+      </p>
+    </div>
 
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1>স্বাগতম! আমি হাসান।</h1>
-            <h2></h2>
-            <p>আপনার ব্যক্তিগত জীবন, কাজ এবং ভ্রমণ অভিজ্ঞতা এই ওয়েবসাইটে সুন্দরভাবে সাজানো আছে। নতুন কিছু শেখা এবং সৃষ্টি করাই আমার লক্ষ্য।</p>
-            <a href="about.html" class="cta-button">আমার সম্পর্কে জানুন</a>
-        </div>
-    </section>
+    <div class="section">
+      <h2>Blood Information</h2>
+      <p><strong>Blood Group:</strong> A+</p>
+      <p><strong>Last Blood Donation:</strong> 9 August</p>
+    </div>
 
-    <section class="notice-section">
-        <h3>সাম্প্রতিক নোটিস ও হাইলাইটস</h3>
-        <div class="notice-container">
-            <div class="notice-card">
-                <h4>নতুন কিছু নেই !</h4>
-                <p>বর্তমানে আমি কোনো প্রজেক্টে কাজ করছি না।</p>
-            </div>
-            <div class="notice-card">
-                <h4>নতুন কিছু নেই !/h4>
-                <p>...</p>
-            </div>
-        </div>
-    </section>
+    <div class="section">
+      <h2>Places I Have Visited</h2>
+      <p>• Cox’s Bazar</p>
+      <p>• Bandarban</p>
+      <p>• Rangamati</p>
+      <p>• Sylhet</p>
+      <p>• Kuakata</p>
+    </div>
 
-    <footer class="footer">
-        <p>&copy; <span id="year"></span> হাসান. সর্বস্বত্ব সংরক্ষিত।</p>
-        <div class="social-links">
-            <a href="#" target="_blank">LinkedIn</a> | 
-            <a href="#" target="_blank">Twitter</a> | 
-            <a href="#" target="_blank">GitHub</a>
-        </div>
-    </footer>
+  </div>
 
-    <script>
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
+  <footer>
+    <p>Contact Me</p>
+    <p>Email: <strong>asadulislamhasan321@gmail.com</strong></p>
+    <p>Phone: <strong>+8801917757634</strong></p>
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-        });
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/KH.HasanBro"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="Facebook" /></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" /></a>
+      <a href="https://www.instagram.com/"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png" alt="Instagram" /></a>
+      <a href="https://wa.me/8801917757634"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" /></a>
+    </div>
+
+    <p style="margin-top: 20px; font-size: 14px; opacity: 0.7;">
+      © 2025 Hasan • All Rights Reserved • Terms & Conditions
+    </p>
+  </footer>
 </body>
 </html>
