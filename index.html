@@ -53,7 +53,7 @@
     }
 
     header p {
-        font-size:22px; 
+        font-size:10px; 
         color:#ffd38a; 
         margin-top:15px; 
         letter-spacing: 1px;
@@ -215,7 +215,7 @@
     }
 
     /* Media Queries */
-    @media(max-width:768px){header h1{font-size:45px;} .section h2{font-size:28px;} nav a{margin:0 12px;}}
+    @media(max-width:768px){header h1{font-size:32px;} .section h2{font-size:28px;} nav a{margin:0 12px;}}
   </style>
 </head>
 <body>
@@ -223,190 +223,6 @@
     <h1>Asadul Islam Hasan</h1>
     <p>Student • Traveler • Dreamer • Entrepreneur</p>
     <div class="header-rule"></div> 
-  </header>
-
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#travel">Travel</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <div class="container">
-
-    <div class="section" id="about">
-      <h2>About Me</h2>
-      <p>Hi, I’m Hasan. I’m currently studying in **Class Eleven** at **Munshiganj Technical School & College**. Alongside my studies, I manage a company, have experience running a business, and actively plan strategies for growth. I love learning new things, building unique projects, and exploring beautiful places across Bangladesh.</p>
-    </div>
-
-    <div class="section" id="skills">
-      <h2>Skills</h2>
-      <div class="skill"><div class="skill-name">Business Management</div><div class="skill-bar"><div class="skill-bar-fill" data-width="85%"></div></div></div>
-      <div class="skill"><div class="skill-name">Web Development</div><div class="skill-bar"><div class="skill-bar-fill" data-width="90%"></div></div></div>
-      <div class="skill"><div class="skill-name">Arduino / IoT</div><div class="skill-bar"><div class="skill-bar-fill" data-width="80%"></div></div></div>
-      <div class="skill"><div class="skill-name">Design / Photoshop</div><div class="skill-bar"><div class="skill-bar-fill" data-width="75%"></div></div></div>
-    </div>
-
-    <div class="section" id="projects">
-      <h2>Projects / Portfolio</h2>
-      <ul>
-        <li>ESP32 WiFi + OLED Display Clock Project</li>
-        <li>ESP8266 Web-Controlled Relay Project</li>
-        <li>Personal Portfolio Website (This site!)</li>
-        <li>Company Management & Business Projects</li>
-      </ul>
-    </div>
-
-    <div class="section" id="travel">
-      <h2>Places I Have Visited</h2>
-      <ul>
-        <li>Cox’s Bazar</li>
-        <li>Bandarban</li>
-        <li>Rangamati</li>
-        <li>Sylhet</li>
-        <li>Kuakata</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <footer id="contact">
-    <div class="footer-content">
-        <h2>Connect With Me</h2>
-        <div class="contact-info">
-            <p>Email: asadulislamhasan321@gmail.com</p>
-            <p>Phone: +8801917757634</p>
-        </div>
-        <div class="social-links">
-            <a href="https://www.facebook.com/KH.HasanBro">Facebook</a>
-            <a href="https://wa.me/8801917757634">WhatsApp</a>
-            <a href="https://www.instagram.com/asadulislamhasan143?igsh=MWlpdzJ1NzFlMGxkdA==">Instagram</a>
-        </div>
-        <p class="copyright">© 2025 Hasan • All Rights Reserved</p>
-        <p class="copyright">Terms & Conditions</p>
-    </div>
-  </footer>
-
-  <script>
-    const sections = document.querySelectorAll('.section');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-          
-          if(entry.target.id === 'skills') {
-            const skillBars = entry.target.querySelectorAll('.skill-bar-fill');
-            skillBars.forEach(bar => {
-              bar.style.transition = 'none';
-              bar.style.width = '0%';
-              
-              requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    bar.style.transition = 'width 1.5s ease-out';
-                    bar.style.width = bar.getAttribute('data-width');
-                });
-              });
-            });
-          }
-        } else {
-          entry.target.classList.remove('visible');
-
-          if(entry.target.id === 'skills') {
-             const skillBars = entry.target.querySelectorAll('.skill-bar-fill');
-             skillBars.forEach(bar => {
-                bar.style.transition = 'none';
-                bar.style.width = '0%';
-             });
-          }
-        }
-      });
-    }, { 
-      threshold: 0.3,
-      rootMargin: '0px 0px -50px 0px'
-    });
-
-    sections.forEach(section => observer.observe(section));
-  </script>
-</body>
-</html>
-    .skill-bar-fill {
-        height:100%; 
-        background:#ff9f60; 
-        width:0%; 
-        border-radius:5px; 
-        transition:width 1.5s ease-out;
-        box-shadow: 0 0 8px #ff9f60; 
-        background: linear-gradient(90deg, #ff7c4f, #ff9f60);
-    }
-
-    /* Professional Footer Styling */
-    footer {
-        padding:50px 20px; 
-        text-align:center; 
-        background:#0a0c14; 
-        border-top:5px solid #ff9f60; 
-    }
-    
-    .footer-content {
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-        max-width: 600px;
-        margin: 0 auto;
-    }
-    
-    footer h2 {
-        font-size: 28px;
-        color: #ffd38a;
-        margin-bottom: 20px;
-    }
-    
-    .contact-info p {
-        margin: 8px 0; 
-        font-size: 16px; 
-        opacity: 0.95;
-    }
-    
-    .social-links {
-        margin: 20px 0;
-        border-top: 1px solid #222538;
-        border-bottom: 1px solid #222538;
-        padding: 15px 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-    .social-links a {
-        margin:0 15px; 
-        font-weight:600; 
-        color:#ffd38a; 
-        transition:0.3s;
-        padding: 5px 10px;
-        border-radius: 5px;
-    }
-    .social-links a:hover {
-        color:#ff9f60; 
-        text-shadow:0 0 8px rgba(255,159,96,0.6);
-        background: #1c1f2c;
-    }
-
-    .copyright {
-        margin-top: 15px;
-        font-size: 14px;
-        opacity: 0.7;
-    }
-
-    /* Media Queries */
-    @media(max-width:768px){header h1{font-size:45px;} .section h2{font-size:28px;} nav a{margin:0 12px;}}
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Asadul Islam Hasan</h1>
-    <p>Student • Traveler • Dreamer • Entrepreneur</p>
   </header>
 
   <nav>
