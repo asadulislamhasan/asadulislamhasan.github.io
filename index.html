@@ -11,12 +11,18 @@
     body {font-family:'Poppins',sans-serif; background:#0c0f16; color:#e0e0e0; scroll-behavior: smooth;}
     a {text-decoration:none; color:inherit;}
 
-    /* Keyframes for Name Slide-In */
-    @keyframes nameSlideIn {
-      0% { transform: translateX(-100%); opacity: 0; }
-      100% { transform: translateX(0); opacity: 1; }
+    /* Keyframes for Name/Subtitle Fade Up (New Unified Animation) */
+    @keyframes headerFadeUp {
+      0% { transform: translateY(20px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
     }
     
+    /* Keyframes for Line Animation */
+    @keyframes lineGrow {
+        0% { transform: scaleX(0); }
+        100% { transform: scaleX(1); }
+    }
+
     /* Keyframes for Nav Link Slide-In (Individual) */
     @keyframes navLinkFade {
       from { opacity: 0; transform: translateY(-10px); }
@@ -24,19 +30,54 @@
     }
 
     /* Header Styling */
-    header {padding:80px 20px; text-align:center; background:linear-gradient(135deg,#0f1321,#1c1f2c,#2b2f3f); box-shadow:0 5px 40px rgba(255,160,80,0.3); overflow: hidden;}
+    header {
+        padding:80px 20px; 
+        text-align:center; 
+        background:linear-gradient(135deg,#0f1321,#1c1f2c,#2b2f3f); 
+        box-shadow:0 5px 40px rgba(255,160,80,0.3); 
+        overflow: hidden;
+        position: relative; /* rule এর জন্য */
+    }
+
     header h1 {
         font-size:55px; 
         font-weight:800; 
         background:linear-gradient(90deg,#ff7c4f,#ffb36b,#ffd38a); 
         -webkit-background-clip:text; 
         -webkit-text-fill-color:transparent; 
-        /* Name Slide-In Animation */
-        transform: translateX(-100%); /* Start off-screen */
+        
+        /* Unified Header Animation */
         opacity: 0;
-        animation: nameSlideIn 1s ease-out forwards; /* Run once on load */
+        transform: translateY(20px);
+        animation: headerFadeUp 0.8s ease-out forwards;
     }
-    header p {font-size:22px; color:#ffd38a; margin-top:15px; opacity:0.85; letter-spacing: 1px;}
+
+    header p {
+        font-size:22px; 
+        color:#ffd38a; 
+        margin-top:15px; 
+        letter-spacing: 1px;
+        
+        /* Unified Header Animation - 0.2s delay */
+        opacity:0; 
+        transform: translateY(20px);
+        animation: headerFadeUp 0.8s ease-out forwards;
+        animation-delay: 0.2s; 
+        padding-bottom: 20px; /* লাইনের উপরে জায়গা তৈরি করার জন্য */
+    }
+
+    /* New Styling for Header Rule Line */
+    .header-rule {
+        width: 250px; /* প্রস্থ বাড়ানো হয়েছে */
+        height: 3px;
+        background: linear-gradient(90deg, #ff7c4f, #ffb36b, #ffd38a);
+        box-shadow: 0 0 10px rgba(255, 159, 96, 0.8);
+        margin: 0 auto; /* মাঝখানে আনতে */
+        transform: scaleX(0);
+        transform-origin: center; /* মাঝখান থেকে অ্যানিমেট করবে */
+        animation: lineGrow 0.6s ease-out forwards;
+        animation-delay: 1.0s; /* H1 ও P অ্যানিমেশন শেষ হওয়ার পরে শুরু হবে */
+    }
 
     /* Navigation */
     nav {position:sticky; top:0; background:#11141f; display:flex; justify-content:center; padding:12px 0; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.5);}
@@ -52,12 +93,12 @@
     }
     nav a:hover {color:#ff9f60; text-shadow:0 0 8px rgba(255,159,96,0.6);}
 
-    /* Delay the Nav Links using CSS (More efficient than JS for simple staggering) */
-    nav a:nth-child(1) { animation-delay: 1.2s; }
-    nav a:nth-child(2) { animation-delay: 1.35s; }
-    nav a:nth-child(3) { animation-delay: 1.5s; }
-    nav a:nth-child(4) { animation-delay: 1.65s; }
-    nav a:nth-child(5) { animation-delay: 1.8s; }
+    /* Delay the Nav Links - Updated to start after Header animation (approx 1.8s) finishes */
+    nav a:nth-child(1) { animation-delay: 2.0s; }
+    nav a:nth-child(2) { animation-delay: 2.15s; }
+    nav a:nth-child(3) { animation-delay: 2.3s; }
+    nav a:nth-child(4) { animation-delay: 2.45s; }
+    nav a:nth-child(5) { animation-delay: 2.6s; }
 
 
     /* Container & Section (Retained for scroll animation) */
@@ -106,6 +147,190 @@
     .skill {margin:10px 0;}
     .skill-name {margin-bottom:4px;}
     .skill-bar {height:10px; background:#333; border-radius:5px; overflow:hidden; box-shadow: inset 0 0 5px rgba(0,0,0,0.5);}
+    .skill-bar-fill {
+        height:100%; 
+        width:0%; 
+        border-radius:5px; 
+        transition:width 1.5s ease-out;
+        box-shadow: 0 0 8px #ff9f60; 
+        background: linear-gradient(90deg, #ff7c4f, #ff9f60);
+    }
+
+    /* Professional Footer Styling */
+    footer {
+        padding:50px 20px; 
+        text-align:center; 
+        background:#0a0c14; 
+        border-top:5px solid #ff9f60; 
+    }
+    
+    .footer-content {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    footer h2 {
+        font-size: 28px;
+        color: #ffd38a;
+        margin-bottom: 20px;
+    }
+    
+    .contact-info p {
+        margin: 8px 0; 
+        font-size: 16px; 
+        opacity: 0.95;
+    }
+    
+    .social-links {
+        margin: 20px 0;
+        border-top: 1px solid #222538;
+        border-bottom: 1px solid #222538;
+        padding: 15px 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .social-links a {
+        margin:0 15px; 
+        font-weight:600; 
+        color:#ffd38a; 
+        transition:0.3s;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    .social-links a:hover {
+        color:#ff9f60; 
+        text-shadow:0 0 8px rgba(255,159,96,0.6);
+        background: #1c1f2c;
+    }
+
+    .copyright {
+        margin-top: 15px;
+        font-size: 14px;
+        opacity: 0.7;
+    }
+
+    /* Media Queries */
+    @media(max-width:768px){header h1{font-size:45px;} .section h2{font-size:28px;} nav a{margin:0 12px;}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Asadul Islam Hasan</h1>
+    <p>Student • Traveler • Dreamer • Entrepreneur</p>
+    <div class="header-rule"></div> 
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#travel">Travel</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="container">
+
+    <div class="section" id="about">
+      <h2>About Me</h2>
+      <p>Hi, I’m Hasan. I’m currently studying in **Class Eleven** at **Munshiganj Technical School & College**. Alongside my studies, I manage a company, have experience running a business, and actively plan strategies for growth. I love learning new things, building unique projects, and exploring beautiful places across Bangladesh.</p>
+    </div>
+
+    <div class="section" id="skills">
+      <h2>Skills</h2>
+      <div class="skill"><div class="skill-name">Business Management</div><div class="skill-bar"><div class="skill-bar-fill" data-width="85%"></div></div></div>
+      <div class="skill"><div class="skill-name">Web Development</div><div class="skill-bar"><div class="skill-bar-fill" data-width="90%"></div></div></div>
+      <div class="skill"><div class="skill-name">Arduino / IoT</div><div class="skill-bar"><div class="skill-bar-fill" data-width="80%"></div></div></div>
+      <div class="skill"><div class="skill-name">Design / Photoshop</div><div class="skill-bar"><div class="skill-bar-fill" data-width="75%"></div></div></div>
+    </div>
+
+    <div class="section" id="projects">
+      <h2>Projects / Portfolio</h2>
+      <ul>
+        <li>ESP32 WiFi + OLED Display Clock Project</li>
+        <li>ESP8266 Web-Controlled Relay Project</li>
+        <li>Personal Portfolio Website (This site!)</li>
+        <li>Company Management & Business Projects</li>
+      </ul>
+    </div>
+
+    <div class="section" id="travel">
+      <h2>Places I Have Visited</h2>
+      <ul>
+        <li>Cox’s Bazar</li>
+        <li>Bandarban</li>
+        <li>Rangamati</li>
+        <li>Sylhet</li>
+        <li>Kuakata</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer id="contact">
+    <div class="footer-content">
+        <h2>Connect With Me</h2>
+        <div class="contact-info">
+            <p>Email: asadulislamhasan321@gmail.com</p>
+            <p>Phone: +8801917757634</p>
+        </div>
+        <div class="social-links">
+            <a href="https://www.facebook.com/KH.HasanBro">Facebook</a>
+            <a href="https://wa.me/8801917757634">WhatsApp</a>
+            <a href="https://www.instagram.com/asadulislamhasan143?igsh=MWlpdzJ1NzFlMGxkdA==">Instagram</a>
+        </div>
+        <p class="copyright">© 2025 Hasan • All Rights Reserved</p>
+        <p class="copyright">Terms & Conditions</p>
+    </div>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('.section');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          
+          if(entry.target.id === 'skills') {
+            const skillBars = entry.target.querySelectorAll('.skill-bar-fill');
+            skillBars.forEach(bar => {
+              bar.style.transition = 'none';
+              bar.style.width = '0%';
+              
+              requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    bar.style.transition = 'width 1.5s ease-out';
+                    bar.style.width = bar.getAttribute('data-width');
+                });
+              });
+            });
+          }
+        } else {
+          entry.target.classList.remove('visible');
+
+          if(entry.target.id === 'skills') {
+             const skillBars = entry.target.querySelectorAll('.skill-bar-fill');
+             skillBars.forEach(bar => {
+                bar.style.transition = 'none';
+                bar.style.width = '0%';
+             });
+          }
+        }
+      });
+    }, { 
+      threshold: 0.3,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>
     .skill-bar-fill {
         height:100%; 
         background:#ff9f60; 
@@ -201,10 +426,10 @@
 
     <div class="section" id="skills">
       <h2>Skills</h2>
-      <div class="skill"><div class="skill-name">Business Management</div><div class="skill-bar"><div class="skill-bar-fill" data-width="85%"></div></div></div>
-      <div class="skill"><div class="skill-name">Web Development</div><div class="skill-bar"><div class="skill-bar-fill" data-width="90%"></div></div></div>
+      <div class="skill"><div class="skill-name">Business Management</div><div class="skill-bar"><div class="skill-bar-fill" data-width="95%"></div></div></div>
+      <div class="skill"><div class="skill-name">Web Development</div><div class="skill-bar"><div class="skill-bar-fill" data-width="85%"></div></div></div>
       <div class="skill"><div class="skill-name">Arduino / IoT</div><div class="skill-bar"><div class="skill-bar-fill" data-width="80%"></div></div></div>
-      <div class="skill"><div class="skill-name">Design / Photoshop</div><div class="skill-bar"><div class="skill-bar-fill" data-width="75%"></div></div></div>
+      <div class="skill"><div class="skill-name">Design / Photoshop</div><div class="skill-bar"><div class="skill-bar-fill" data-width="65%"></div></div></div>
     </div>
 
     <div class="section" id="projects">
