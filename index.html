@@ -4,50 +4,67 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hasan – Personal Website</title>
+  
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <style>
-    /* Global Styles */
+    /* ---------------------------------------------------- */
+    /* ১. গ্লোবাল স্টাইল এবং CSS ভেরিয়েবল (উন্নতি: ভেরিয়েবল যোগ করা) */
+    /* ---------------------------------------------------- */
+    :root {
+        /* কালার ভেরিয়েবল */
+        --color-bg-dark: #0c0f16;
+        --color-section-bg: #161b2c;
+        --color-primary-text: #e0e0e0;
+        --color-accent-light: #ffd38a;
+        --color-accent-med: #ffb36b;
+        --color-accent-dark: #ff7c4f;
+        --color-accent-highlight: #ff9f60;
+        
+        /* ফন্ট ভেরিয়েবল */
+        --font-poppins: 'Poppins', sans-serif;
+        --font-montserrat: 'Montserrat', sans-serif;
+    }
+
     * {margin:0; padding:0; box-sizing:border-box;}
     body {
-        font-family:'Poppins',sans-serif; 
-        background:#0c0f16; 
-        color:#e0e0e0; 
+        font-family: var(--font-poppins); 
+        background: var(--color-bg-dark); 
+        color: var(--color-primary-text); 
         scroll-behavior: smooth;
     }
     a {text-decoration:none; color:inherit;}
 
-    /* Keyframes for Name/Subtitle Fade Up (Header) */
+    /* ---------------------------------------------------- */
+    /* ২. কীফ্রেম অ্যানিমেশন (পূর্বের কোড থেকে) */
+    /* ---------------------------------------------------- */
     @keyframes headerFadeUp {
       0% { transform: translateY(20px); opacity: 0; }
       100% { transform: translateY(0); opacity: 1; }
     }
-    
-    /* Keyframes for Line Animation (Center Grow) */
     @keyframes lineGrow {
         0% { transform: scaleX(0); }
         100% { transform: scaleX(1); }
     }
-
-    /* Keyframes for Nav Link Slide-In (Individual) */
     @keyframes navLinkFade {
       from { opacity: 0; transform: translateY(-10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    /* Keyframes for List Item Text Animation */
     @keyframes listItemFadeIn {
         0% { opacity: 0; transform: translateY(10px); }
         100% { transform: translateY(0); opacity: 1; }
     }
-    /* Keyframes for Icon Pop-In Animation */
     @keyframes iconPopIn {
         0% { transform: scale(0); opacity: 0; }
         70% { transform: scale(1.2); opacity: 1; }
         100% { transform: scale(1); opacity: 1; }
     }
 
-
-    /* Header Styling */
+    /* ---------------------------------------------------- */
+    /* ৩. হেডার স্টাইল */
+    /* ---------------------------------------------------- */
     header {
         padding:60px 20px; 
         text-align:center; 
@@ -58,10 +75,11 @@
     }
 
     header h1 {
-        font-family: 'Montserrat', sans-serif; 
+        font-family: var(--font-montserrat); 
         font-size:55px; 
         font-weight:800; 
-        background:linear-gradient(90deg,#ff7c4f,#ffb36b,#ffd38a); 
+        /* গ্রেডিয়েন্ট ভেরিয়েবল ব্যবহার করে */
+        background:linear-gradient(90deg, var(--color-accent-dark), var(--color-accent-med), var(--color-accent-light)); 
         -webkit-background-clip:text; 
         -webkit-text-fill-color:transparent; 
         
@@ -74,7 +92,7 @@
 
     header p {
         font-size:14px; 
-        color:#ffd38a; 
+        color: var(--color-accent-light); 
         letter-spacing: 2px; 
         
         opacity:0; 
@@ -85,11 +103,10 @@
         margin: 0 auto; 
     }
 
-    /* Header Rule Line */
     .header-rule {
         width: 400px; 
         height: 3px;
-        background: linear-gradient(90deg, #ff7c4f, #ffb36b, #ffd38a);
+        background: linear-gradient(90deg, var(--color-accent-dark), var(--color-accent-med), var(--color-accent-light));
         box-shadow: 0 0 10px rgba(255, 159, 96, 0.8);
         margin: 0 auto; 
         transform: scaleX(0);
@@ -98,30 +115,31 @@
         animation-delay: 0.6s; 
     }
 
-    /* Navigation */
+    /* ---------------------------------------------------- */
+    /* ৪. নেভিগেশন স্টাইল */
+    /* ---------------------------------------------------- */
     nav {
       position:sticky; 
       top:0; 
       background:#000000; 
-      /* border-bottom: 2px solid #ff7c4f; -- BORDER REMOVED FOR ANIMATION */
       display:flex; 
-      flex-direction: column; /* Added for line below nav links */
+      flex-direction: column; 
       justify-content:center; 
-      padding:12px 0 0 0; /* Adjusted padding to place line at the bottom */
+      padding:12px 0 0 0; 
       z-index:1000; 
       box-shadow:0 2px 10px rgba(0,0,0,0.8);
-      overflow: hidden; /* To clip the growing line */
+      overflow: hidden; 
     }
     
     .nav-links {
       display: flex;
       justify-content: center;
-      padding-bottom: 12px; /* Space above the animated line */
+      padding-bottom: 12px; 
     }
 
     nav a {
         margin:0 18px; 
-        color:#ffd38a; 
+        color: var(--color-accent-light); 
         font-size: 17px; 
         font-weight:600; 
         transition:0.4s; 
@@ -131,59 +149,67 @@
         white-space: nowrap; 
     }
     nav a:hover {
-        color:#ff9f60; 
+        color: var(--color-accent-highlight); 
         text-shadow:0 0 10px rgba(255,159,96,0.8); 
     }
     
-    /* ANIMATED LINE FOR NAV BAR */
     .nav-line {
         width: 100%;
         height: 2px;
-        background: linear-gradient(90deg, #ff7c4f, #ffb36b, #ffd38a);
+        background: linear-gradient(90deg, var(--color-accent-dark), var(--color-accent-med), var(--color-accent-light));
         box-shadow: 0 0 8px rgba(255, 159, 96, 0.8);
         transform: scaleX(0);
         transform-origin: left;
         animation: lineGrow 0.5s ease-out forwards;
-        animation-delay: 1.3s; /* Starts after links load */
+        animation-delay: 1.3s; 
     }
 
-
-    /* Delay the Nav Links - FASTER DELAYS */
+    /* Nav Link Staggered Delays */
     nav a:nth-child(1) { animation-delay: 0.8s; }
     nav a:nth-child(2) { animation-delay: 0.9s; }
     nav a:nth-child(3) { animation-delay: 1.0s; }
     nav a:nth-child(4) { animation-delay: 1.1s; }
     nav a:nth-child(5) { animation-delay: 1.2s; }
 
-
-    /* Container & Section */
+    /* ---------------------------------------------------- */
+    /* ৫. কন্টেইনার এবং সেকশন স্টাইল */
+    /* ---------------------------------------------------- */
     .container {width:90%; max-width:1000px; margin:40px auto;} 
     .section {
       margin-bottom:40px; 
       padding:20px; 
-      background:#161b2c; 
+      background: var(--color-section-bg); 
       border-radius:12px; 
       position:relative; 
       overflow:hidden;
       box-shadow: 0 0 15px rgba(255, 159, 96, 0.15); 
       opacity:0;
       transform:translateY(30px);
+      /* transition ব্যবহার না করে JS এ অ্যানিমেশন ট্রিগার করা হয়েছে */
       transition: opacity 0.4s ease-out, transform 0.4s ease-out; 
       scroll-margin-top: 60px; 
     }
     .section.visible {
       opacity:1;
       transform:translateY(0);
+      /* অ্যানিমেশন ট্রিগার হলে উজ্জ্বল শ্যাডো */
       box-shadow: 0 0 30px rgba(255, 159, 96, 0.5); 
     }
     
-    /* Section Header and Glowing Line Animation */
     .section h2 {
-      font-family: 'Montserrat', sans-serif; 
-      font-size:28px; color:#ffa76b; margin-bottom:15px; font-weight:800; text-transform:uppercase; letter-spacing:1px; position:relative; z-index:2;
+      font-family: var(--font-montserrat); 
+      font-size:28px; 
+      color: var(--color-accent-highlight); 
+      margin-bottom:15px; 
+      font-weight:800; 
+      text-transform:uppercase; 
+      letter-spacing:1px; 
+      position:relative; 
+      z-index:2;
       padding-bottom:10px;
     }
     
+    /* সেকশন হেডার আন্ডারলাইন অ্যানিমেশন */
     .section h2::after {
         content: '';
         position: absolute;
@@ -191,7 +217,7 @@
         left: 0;
         width: 100%;
         height: 3px;
-        background: linear-gradient(90deg, #ff7c4f, #ffb36b, #ffd38a);
+        background: linear-gradient(90deg, var(--color-accent-dark), var(--color-accent-med), var(--color-accent-light));
         box-shadow: 0 0 12px rgba(255, 159, 96, 1.0); 
         transform: scaleX(0);
         transform-origin: left;
@@ -201,8 +227,8 @@
     .section.visible h2::after {
         transform: scaleX(1);
     }
-
-    /* Section Paragraph Animation */
+    
+    /* সেকশন প্যারাগ্রাফ অ্যানিমেশন */
     .section.visible > p {
         opacity: 0;
         transform: translateY(10px);
@@ -212,22 +238,22 @@
 
     .section p {font-size:16px; line-height:1.7; color:#e2e2e2; position:relative; z-index:2;}
     
-    /* LIST ITEM STYLING AND ANIMATION - UPDATED FOR CLOSER BULLET TO TEXT */
+    /* লিস্ট আইটেম স্টাইল ও অ্যানিমেশন */
     ul {list-style:none; padding-left: 0;}
     ul li {
         margin-bottom:10px; 
         font-size: 16px; 
         position: relative; 
-        padding-left: 20px; /* INCREASED PADDING (18px -> 20px) */
+        padding-left: 20px; 
         opacity: 0; 
         transform: translateY(10px); 
         transition: none;
     }
 
-    /* Custom Bullet Point (Glowing Arrow) - MOVED CLOSER TO TEXT */
+    /* কাস্টম বুলেট পয়েন্ট (গ্লোয়িং অ্যারো) */
     ul li::before { 
         content: '➤'; 
-        color: #ff7c4f; 
+        color: var(--color-accent-dark); 
         font-weight: bold;
         font-size: 18px; 
         display: inline-block; 
@@ -242,8 +268,8 @@
         text-shadow: 0 0 8px rgba(255,159,96,0.8); 
     }
 
-    /* List Item Staggered Animations Triggered by JS - FASTER DELAYS */
-    /* Text Animation */
+    /* লিস্ট আইটেম স্ট্যাগার্ড অ্যানিমেশন ট্রিগার */
+    /* টেক্সট অ্যানিমেশন */
     .section.visible ul li {
         animation: listItemFadeIn 0.4s ease-out forwards; 
     }
@@ -252,7 +278,7 @@
     .section.visible ul li:nth-child(3) { animation-delay: 0.4s; }
     .section.visible ul li:nth-child(4) { animation-delay: 0.5s; }
     .section.visible ul li:nth-child(5) { animation-delay: 0.6s; } 
-    /* Icon Animation */
+    /* আইকন অ্যানিমেশন */
     .section.visible ul li::before {
         animation: iconPopIn 0.3s ease-out forwards; 
     }
@@ -262,25 +288,27 @@
     .section.visible ul li:nth-child(4)::before { animation-delay: 0.4s; }
     .section.visible ul li:nth-child(5)::before { animation-delay: 0.5s; } 
 
-    /* Skill Bar Animation (Retained) */
+    /* স্কিল বার স্টাইল ও অ্যানিমেশন */
     .skill {margin:15px 0;}
-    .skill-name {margin-bottom:4px; font-weight: 600; color: #ffd38a;}
+    .skill-name {margin-bottom:4px; font-weight: 600; color: var(--color-accent-light);}
     .skill-bar {height:12px; background:#333; border-radius:6px; overflow:hidden; box-shadow: inset 0 0 5px rgba(0,0,0,0.5);}
     .skill-bar-fill {
         height:100%; 
         width:0%; 
         border-radius:6px; 
         transition:width 1.0s ease-out; 
-        box-shadow: 0 0 10px #ff9f60; 
-        background: linear-gradient(90deg, #ff7c4f, #ff9f60);
+        box-shadow: 0 0 10px var(--color-accent-highlight); 
+        background: linear-gradient(90deg, var(--color-accent-dark), var(--color-accent-highlight));
     }
 
-    /* Footer Styles */
+    /* ---------------------------------------------------- */
+    /* ৬. ফুটার স্টাইল */
+    /* ---------------------------------------------------- */
     footer {
         padding:40px 20px; 
         text-align:center; 
         background:#0a0c14; 
-        border-top:5px solid #ff9f60; 
+        border-top:5px solid var(--color-accent-highlight); 
     }
     
     .footer-content {
@@ -298,10 +326,10 @@
     }
 
     .footer-section h2 {
-        font-family: 'Montserrat', sans-serif;
+        font-family: var(--font-montserrat);
         font-size: 24px;
         font-weight: 800;
-        color: #ffa76b;
+        color: var(--color-accent-highlight);
         margin-bottom: 15px;
         text-transform: uppercase;
     }
@@ -313,7 +341,21 @@
         color: #d0d0d0;
     }
     
-    .footer-links a {
+    .social-links a { /* ফুটার লিঙ্কের বদলে সোশ্যাল লিঙ্কের জন্য নতুন ক্লাস */
+        display: inline-block; /* ইনলাইন ব্লক করে আইকনগুলো এক লাইনে আনা হলো */
+        margin: 0 10px;
+        font-size: 24px;
+        color: var(--color-accent-light);
+        transition: color 0.3s, transform 0.3s;
+    }
+    
+    .social-links a:hover {
+        color: var(--color-accent-highlight);
+        transform: translateY(-3px);
+    }
+    
+    /* দ্রুত লিঙ্ক (কন্টাক্ট/পোর্টফোলিও) */
+    .quick-links a { 
         display: block; 
         margin: 8px auto;
         font-size: 15px;
@@ -321,10 +363,11 @@
         width: fit-content;
         transition: color 0.3s;
     }
-    
-    .footer-links a:hover {
-        color: #ff9f60;
+
+    .quick-links a:hover {
+        color: var(--color-accent-highlight);
     }
+
 
     .copyright {
         margin-top: 20px; 
@@ -332,7 +375,9 @@
         opacity: 0.7;
     }
 
-    /* Media Queries */
+    /* ---------------------------------------------------- */
+    /* ৭. মিডিয়া কোয়েরি */
+    /* ---------------------------------------------------- */
     @media(min-width: 600px) {
         .footer-content {
             flex-direction: row;
@@ -345,26 +390,24 @@
             margin-bottom: 0;
             text-align: left;
         }
-        .footer-links a {
+        .quick-links a {
             margin: 8px 0;
+            width: auto;
+        }
+        .social-links {
+            text-align: left;
         }
     }
 
     @media(max-width:768px){
         header h1{
             font-size:40px; 
-            margin-left: auto;
-            margin-right: auto;
         } 
         header p{
             font-size:12px; 
-            margin-left: auto;
-            margin-right: auto;
         }
         .header-rule{
             width: 300px; 
-            margin-left: auto;
-            margin-right: auto;
         }
         .section h2{font-size:24px;} 
         nav a{margin:0 12px; font-size: 16px;} 
@@ -382,6 +425,10 @@
             width: 200px;
         }
         nav a{margin:0 8px; font-size: 14px;}
+        .social-links a {
+            font-size: 20px;
+            margin: 0 5px;
+        }
     }
 
   </style>
@@ -404,7 +451,7 @@
     <div class="nav-line"></div> 
   </nav>
 
-  <div class="container">
+  <main class="container">
 
     <div class="section" id="about">
       <h2>About Me</h2>
@@ -422,9 +469,9 @@
     <div class="section" id="projects">
       <h2>Portfolio & Projects</h2>
       <ul>
-        <li>ESP32 WiFi + OLED Display Clock Project (IoT)</li>
-        <li>ESP8266 Web-Controlled Relay Project (Automation)</li>
-        <li>Personal Portfolio Website (This site!)</li>
+        <li><a href="URL_OF_PROJECT_1" target="_blank">ESP32 WiFi + OLED Display Clock Project (IoT)</a></li>
+        <li><a href="URL_OF_PROJECT_2" target="_blank">ESP8266 Web-Controlled Relay Project (Automation)</a></li>
+        <li><a href="https://github.com/YourGitHub/this-site" target="_blank">Personal Portfolio Website (This site!)</a></li>
         <li>Company Management & Business Strategy Projects</li>
       </ul>
     </div>
@@ -442,14 +489,12 @@
     
     <div class="section" id="blood-info">
       <h2>Blood Information</h2>
-      <p style="font-size: 20px; font-weight: 700; color: #ff7c4f; margin-bottom: 10px;">Blood Group: B+</p>
+      <p style="font-size: 20px; font-weight: 700; color: var(--color-accent-dark); margin-bottom: 10px;">Blood Group: B+</p>
       <p>Last Donated: **9 August 2025**</p>
       <p style="margin-top: 20px;">**Call-to-Action:** I am happy to donate blood to those in need, provided I am healthy and eligible. Please reach out to me via my social media links below for urgent coordination.</p>
     </div>
 
-  </div>
-
-  <footer id="footer">
+  </main> <footer id="footer">
     <div class="footer-content">
         
         <div class="footer-section">
@@ -458,19 +503,22 @@
         </div>
 
         <div class="footer-section">
-            <h2>Quick Links</h2>
-            <div class="footer-links">
+            <h2>Links</h2>
+            
+            <div class="quick-links">
                 <a href="#about">About Me</a>
                 <a href="#projects">Portfolio</a>
                 <a href="#blood-info">Blood Info</a>
-                
-                <p style="margin: 15px 0 5px 0; font-size: 14px; color: #666;">--- Contact ---</p>
-                
-                <a href="https://www.facebook.com/KH.HasanBro" target="_blank">Facebook</a>
-                <a href="https://www.instagram.com/" target="_blank">Instagram</a>
-                <a href="#" target="_blank">LinkedIn</a> 
-                <a href="#" target="_blank">Twitter</a> 
             </div>
+
+            <div class="social-links" style="margin-top: 20px;">
+                <a href="https://www.facebook.com/KH.HasanBro" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="YOUR_LINKEDIN_URL" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a> 
+                <a href="YOUR_TWITTER_URL" target="_blank" title="Twitter/X"><i class="fab fa-x-twitter"></i></a> 
+                <a href="mailto:YOUREMAIL@example.com" title="Email"><i class="fas fa-envelope"></i></a> 
+            </div>
+            
         </div>
 
     </div>
@@ -489,11 +537,14 @@
           if(entry.target.id === 'skills') {
             const skillBars = entry.target.querySelectorAll('.skill-bar-fill');
             skillBars.forEach(bar => {
+              // অ্যানিমেশন রিসেট করতে ট্রানজিশন বন্ধ ও width শূন্য
               bar.style.transition = 'none';
               bar.style.width = '0%';
               
+              // ব্রাউজারকে দুটি পৃথক ফ্রেমে রিসেট এবং আবার সেট করার সময় দিতে
               requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
+                    // ট্রানজিশন আবার চালু এবং ডেটা অ্যাট্রিবিউট থেকে width সেট করা
                     bar.style.transition = 'width 1.0s ease-out'; 
                     bar.style.width = bar.getAttribute('data-width');
                 });
@@ -502,6 +553,8 @@
           }
           
         } else {
+          // যখন সেকশন দৃষ্টির বাইরে যায়, তখন ক্লাস ও স্কিল বার রিসেট করা হয় 
+          // (যদি আপনি চান এটি স্ক্রল আপ করার সময় পুনরায় অ্যানিমেট হোক)
           entry.target.classList.remove('visible');
 
           if(entry.target.id === 'skills') {
@@ -514,7 +567,7 @@
         }
       });
     }, { 
-      threshold: 0.3,
+      threshold: 0.3, // সেকশনের ৩০% দেখা গেলেই ট্রিগার হবে
       rootMargin: '0px 0px -50px 0px'
     });
 
