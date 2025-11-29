@@ -183,11 +183,13 @@
       position:relative; 
       overflow:hidden;
       box-shadow: 0 0 15px rgba(255, 159, 96, 0.15); 
-      opacity:0;
+      
+      /* অ্যানিমেশনের জন্য ডিফল্টভাবে লুকানো */
+      opacity:0; 
       transform:translateY(30px);
-      /* transition ব্যবহার না করে JS এ অ্যানিমেশন ট্রিগার করা হয়েছে */
       transition: opacity 0.4s ease-out, transform 0.4s ease-out; 
-      scroll-margin-top: 60px; 
+      
+      scroll-margin-top: 60px; /* স্টিকি নেভিগেশনের জন্য */
     }
     .section.visible {
       opacity:1;
@@ -290,7 +292,6 @@
 
     /* স্কিল বার স্টাইল ও অ্যানিমেশন */
     .skill {margin:15px 0;}
-    /* সংশোধিত স্কিল নেম স্টাইল */
     .skill-name {
         display: flex;
         justify-content: space-between;
@@ -305,7 +306,6 @@
         font-weight: 700;
         color: var(--color-accent-highlight); 
     }
-    /* শেষ সংশোধিত স্কিল নেম স্টাইল */
     
     .skill-bar {height:12px; background:#333; border-radius:6px; overflow:hidden; box-shadow: inset 0 0 5px rgba(0,0,0,0.5);}
     .skill-bar-fill {
@@ -357,8 +357,8 @@
         color: #d0d0d0;
     }
     
-    .social-links a { /* ফুটার লিঙ্কের বদলে সোশ্যাল লিঙ্কের জন্য নতুন ক্লাস */
-        display: inline-block; /* ইনলাইন ব্লক করে আইকনগুলো এক লাইনে আনা হলো */
+    .social-links a { 
+        display: inline-block; 
         margin: 0 10px;
         font-size: 24px;
         color: var(--color-accent-light);
@@ -580,7 +580,7 @@
   </footer>
 
   <script>
-    // নতুন ফাংশন: শতাংশ কাউন্টিং অ্যানিমেশন
+    // নতুন ফাংশন: শতাংশ কাউন্টিং অ্যানিমেশন লজিক
     function animatePercentage(element, finalValue, duration) {
         let startTimestamp = null;
         const step = (timestamp) => {
@@ -615,4 +615,51 @@
             skillBars.forEach(bar => {
               const percentageSpan = bar.closest('.skill').querySelector('.skill-percentage');
               const finalWidth = bar.getAttribute('data-width');
-              const finalPerce
+              const finalPercentage = parseInt(percentageSpan.getAttribute('data-percentage'));
+              
+              // অ্যানিমেশন রিসেট
+              bar.style.transition = 'none';
+              bar.style.width = '0%';
+              percentageSpan.textContent = '0%';
+              
+              // ব্রাউজারকে দুটি পৃথক ফ্রেমে রিসেট এবং আবার সেট করার সময় দিতে
+              requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    // ১. স্কিল বারের অ্যানিমেশন শুরু
+                    bar.style.transition = 'width 1.0s ease-out'; 
+                    bar.style.width = finalWidth;
+                    
+                    // ২. শতাংশ কাউন্টিং অ্যানিমেশন শুরু
+                    animatePercentage(percentageSpan, finalPercentage, 1000); // 1000ms = 1s
+                });
+              });
+            });
+          }
+          
+        } else {
+          // যখন সেকশন দৃষ্টির বাইরে যায়, তখন ক্লাস ও স্কিল বার রিসেট করা হয়
+          // যাতে স্ক্রল করে আবার ফিরে আসলে অ্যানিমেশনটি পুনরাবৃত্তি হয়
+          entry.target.classList.remove('visible');
+
+          if(entry.target.id === 'skills') {
+             const skillBars = entry.target.querySelectorAll('.skill-bar-fill');
+             skillBars.forEach(bar => {
+                bar.style.transition = 'none';
+                bar.style.width = '0%';
+                
+                // শতাংশ রিসেট
+                const percentageSpan = bar.closest('.skill').querySelector('.skill-percentage');
+                percentageSpan.textContent = '0%';
+             });
+          }
+        }
+      });
+    }, { 
+      threshold: 0.3, // সেকশনের ৩০% দেখা গেলেই ট্রিগার হবে
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>
