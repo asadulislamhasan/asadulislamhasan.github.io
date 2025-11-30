@@ -148,7 +148,10 @@
         animation: navLinkFade 0.3s ease forwards; 
         white-space: nowrap; 
     }
-    nav a:hover {
+    
+    /* নতুন স্টাইল: যখন লিঙ্কটি অ্যাক্টিভ থাকবে */
+    nav a.active-nav, 
+    nav a:hover { 
         color: var(--color-accent-highlight); 
         text-shadow:0 0 10px rgba(255,159,96,0.8); 
     }
@@ -616,50 +619,4 @@
               const percentageSpan = bar.closest('.skill').querySelector('.skill-percentage');
               const finalWidth = bar.getAttribute('data-width');
               const finalPercentage = parseInt(percentageSpan.getAttribute('data-percentage'));
-              
-              // অ্যানিমেশন রিসেট
-              bar.style.transition = 'none';
-              bar.style.width = '0%';
-              percentageSpan.textContent = '0%';
-              
-              // ব্রাউজারকে দুটি পৃথক ফ্রেমে রিসেট এবং আবার সেট করার সময় দিতে
-              requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    // ১. স্কিল বারের অ্যানিমেশন শুরু
-                    bar.style.transition = 'width 1.0s ease-out'; 
-                    bar.style.width = finalWidth;
-                    
-                    // ২. শতাংশ কাউন্টিং অ্যানিমেশন শুরু
-                    animatePercentage(percentageSpan, finalPercentage, 1000); // 1000ms = 1s
-                });
-              });
-            });
-          }
-          
-        } else {
-          // যখন সেকশন দৃষ্টির বাইরে যায়, তখন ক্লাস ও স্কিল বার রিসেট করা হয়
-          // যাতে স্ক্রল করে আবার ফিরে আসলে অ্যানিমেশনটি পুনরাবৃত্তি হয়
-          entry.target.classList.remove('visible');
-
-          if(entry.target.id === 'skills') {
-             const skillBars = entry.target.querySelectorAll('.skill-bar-fill');
-             skillBars.forEach(bar => {
-                bar.style.transition = 'none';
-                bar.style.width = '0%';
-                
-                // শতাংশ রিসেট
-                const percentageSpan = bar.closest('.skill').querySelector('.skill-percentage');
-                percentageSpan.textContent = '0%';
-             });
-          }
-        }
-      });
-    }, { 
-      threshold: 0.3, // সেকশনের ৩০% দেখা গেলেই ট্রিগার হবে
-      rootMargin: '0px 0px -50px 0px'
-    });
-
-    sections.forEach(section => observer.observe(section));
-  </script>
-</body>
-</html>
+       
