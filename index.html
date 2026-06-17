@@ -7,115 +7,134 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-dark: #050811;
-            --card-bg: rgba(11, 17, 32, 0.6);
+            --bg-dark: #030712;
+            --card-bg: rgba(15, 23, 42, 0.45);
             --accent-copper: #d9966c;
             --accent-gold: #f59e0b;
+            --accent-glow: rgba(217, 150, 108, 0.3);
             --text-main: #ffffff;
             --text-muted: #94a3b8;
         }
 
-        * {
+        /* 🚫 স্ক্রোলিং পুরোপুরি লক */
+        html, body {
             margin: 0;
             padding: 0;
+            width: 100%;
+            height: 100vh;
+            height: -webkit-fill-available;
+            overflow: hidden;
             box-sizing: border-box;
+            background-color: var(--bg-dark);
+        }
+
+        * {
+            box-sizing: inherit;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-dark);
             color: var(--text-main);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden;
             position: relative;
         }
 
-        /* 🌌 ব্যাকগ্রাউন্ডের মডার্ন নিয়ন লাইটিং */
-        body::before, body::after {
-            content: '';
+        /* 🌌 মডার্ন এনিমেটেড ব্যাকগ্রাউন্ড অরবস */
+        .bg-glow-1, .bg-glow-2 {
             position: absolute;
-            width: 350px;
-            height: 350px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(217, 150, 108, 0.2), transparent 70%);
+            background: radial-gradient(circle, var(--accent-glow), transparent 70%);
             z-index: -1;
+            filter: blur(40px);
         }
-        body::before { top: 5%; left: 10%; }
-        body::after { bottom: 5%; right: 10%; }
+        .bg-glow-1 {
+            width: 400px; height: 400px;
+            top: -10%; left: -10%;
+            animation: pulseGlow 8s ease-in-out infinite alternate;
+        }
+        .bg-glow-2 {
+            width: 500px; height: 500px;
+            bottom: -15%; right: -15%;
+            animation: pulseGlow 10s ease-in-out infinite alternate-reverse;
+        }
 
-        /* 💻 PC এবং 📱 MOBILE রেসপন্সিভ কন্টেইনার */
+        @keyframes pulseGlow {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
+            100% { transform: scale(1.2) translate(20px, -20px); opacity: 0.8; }
+        }
+
+        /* 📦 মেইন কার্ড কন্টেইনার */
         .container {
             width: 100%;
-            background: var(--card-bg);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
             position: relative;
             z-index: 1;
-            animation: cardReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            /* মসৃণ এন্ট্রান্স অ্যানিমেশন */
+            animation: cardEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0;
-            transform: translateY(40px);
+            transform: scale(0.95) translateY(15px);
         }
 
-        @keyframes cardReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes cardEntrance {
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* 🖥️ PC সাইজ */
+        /* 🖥️ PC ভিউ */
         @media (min-width: 481px) {
             .container {
-                max-width: 440px;
+                max-width: 430px;
+                background: var(--card-bg);
+                backdrop-filter: blur(30px);
+                -webkit-backdrop-filter: blur(30px);
                 border-radius: 32px;
-                padding: 55px 35px;
-                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 
-                            inset 0 1px 2px rgba(255, 255, 255, 0.15);
-                border: 1px solid rgba(217, 150, 108, 0.25);
+                padding: 45px 35px;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7),
+                            inset 0 1px 1px rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(217, 150, 108, 0.2);
+                transition: border-color 0.5s ease;
             }
             .container:hover {
-                border-color: rgba(217, 150, 108, 0.5);
-                box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), 
-                            0 0 50px rgba(217, 150, 108, 0.2);
+                border-color: rgba(217, 150, 108, 0.4);
             }
         }
 
-        /* 📱 MOBILE সাইজ */
+        /* 📱 MOBILE ভিউ (নো স্ক্রোল ও ফিট স্ক্রিন) */
         @media (max-width: 480px) {
-            body {
-                padding: 0;
-                align-items: flex-start;
-                background-image: radial-gradient(circle at 50% 15%, rgba(217, 150, 108, 0.3), transparent 60%);
-            }
+            body { padding: 24px; }
             .container {
+                height: 100%;
                 max-width: 100%;
-                min-height: 100vh;
-                border-radius: 0;
-                padding: 65px 24px 40px 24px;
-                background: transparent;
-                backdrop-filter: none;
-                -webkit-backdrop-filter: none;
-                border: none;
-                box-shadow: none;
+                justify-content: space-between;
+                padding: 15px 0;
             }
         }
 
-        /* ✨ চোখ ধাঁধানো ডাবল-লেয়ার্ড গ্লোয়িং আইকন কন্টেইনার */
+        /* 🤵 মাঝখানে থাকা প্রিমিয়াম এনিমেটেড আইকন */
+        .avatar-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+            flex-shrink: 0;
+        }
+
         .premium-avatar-wrapper {
             position: relative;
-            width: 115px;
-            height: 115px;
-            margin: 0 auto 25px;
-            animation: floatAnim 4s ease-in-out infinite;
+            width: 110px;
+            height: 110px;
+            animation: floating 4.5s ease-in-out infinite;
         }
 
         .premium-avatar {
@@ -124,63 +143,60 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #131c2e, #050811);
+            background: linear-gradient(135deg, #0f172a, #030712);
             border-radius: 50%;
             position: relative;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 2;
         }
 
-        /* কন্টিনিউয়াস নিয়ন স্পিন বর্ডার ইফেক্ট */
-        .premium-avatar-wrapper::before {
+        /* আইকনের চারপাশে অনবরত ঘূর্ণায়মান সুক্ষ্ম নিয়ন রিং */
+        .premium-avatar-wrapper::before, .premium-avatar-wrapper::after {
             content: '';
             position: absolute;
-            top: -4px; left: -4px; right: -4px; bottom: -4px;
+            top: -3px; left: -3px; right: -3px; bottom: -3px;
             border-radius: 50%;
-            background: linear-gradient(0deg, transparent, transparent, var(--accent-copper), var(--accent-gold));
-            z-index: -1;
-            animation: rotateGlow 3s linear infinite;
+            background: linear-gradient(0deg, transparent, var(--accent-copper), var(--accent-gold));
+            z-index: 1;
+            animation: orbitRotate 4s linear infinite;
         }
 
-        /* আইকনের পেছনের হালকা কপার শ্যাডো গ্লো */
         .premium-avatar-wrapper::after {
-            content: '';
-            position: absolute;
-            top: -4px; left: -4px; right: -4px; bottom: -4px;
-            border-radius: 50%;
-            background: linear-gradient(0deg, transparent, transparent, var(--accent-copper), var(--accent-gold));
-            z-index: -1;
-            filter: blur(15px);
-            animation: rotateGlow 3s linear infinite;
-            opacity: 0.6;
+            filter: blur(10px);
+            opacity: 0.7;
         }
 
-        @keyframes rotateGlow {
+        @keyframes orbitRotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        /* প্রিমিয়াম গোল্ডেন গ্রেডিয়েন্ট আইকন */
         .premium-avatar i {
-            font-size: 3.2rem;
-            background: linear-gradient(135deg, #ffffff, var(--accent-gold), var(--accent-copper));
+            font-size: 3rem;
+            background: linear-gradient(135deg, #ffffff, #fef08a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 2px 8px rgba(245, 158, 11, 0.3));
         }
 
-        /* ওপর-নিচে স্মুথ দুলার অ্যানিমেশন */
-        @keyframes floatAnim {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* প্রোফাইল টেক্সট */
+        .profile-info {
+            width: 100%;
+            margin-bottom: 25px;
+            flex-shrink: 0;
         }
 
         h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.3rem;
+            font-size: 2.2rem;
             font-weight: 700;
             letter-spacing: -0.5px;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         h1 span {
@@ -189,133 +205,148 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* 📋 ২ লাইনে লক করা প্রিমিয়াম বায়ো টেক্সট */
         .bio {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 40px;
-            font-weight: 400;
-            padding: 0 15px;
-            max-width: 100%;
+            line-height: 1.5;
+            padding: 0 20px;
             display: -webkit-box;
-            -webkit-line-clamp: 2; /* টেক্সট সর্বোচ্চ ২ লাইনে দেখাবে */
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
 
-        /* লিংক কন্টেইনার */
+        /* 📋 এনিমেটেড বাটন র্যাপার */
         .links-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
+            width: 100%;
+            max-width: 380px;
+            margin: auto 0;
+            flex-grow: 1;
+            justify-content: center;
         }
 
         .social-link {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 19px 26px;
-            border-radius: 22px;
+            padding: 16px 24px;
+            border-radius: 20px;
             text-decoration: none;
             color: #ffffff;
             font-weight: 600;
-            font-size: 1.1rem;
-            background: rgba(22, 32, 54, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            font-size: 1.05rem;
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
             overflow: hidden;
             
+            /* একের পর এক বাটন লোড হওয়ার ট্রিক */
             opacity: 0;
-            transform: translateY(25px);
-            animation: linkReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform: translateY(20px);
+            animation: linkEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .social-link:nth-child(1) { animation-delay: 0.2s; }
-        .social-link:nth-child(2) { animation-delay: 0.3s; }
-        .social-link:nth-child(3) { animation-delay: 0.4s; }
-        .social-link:nth-child(4) { animation-delay: 0.5s; }
+        .social-link:nth-child(1) { animation-delay: 0.15s; }
+        .social-link:nth-child(2) { animation-delay: 0.25s; }
+        .social-link:nth-child(3) { animation-delay: 0.35s; }
+        .social-link:nth-child(4) { animation-delay: 0.45s; }
 
-        @keyframes linkReveal {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes linkEntrance {
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .link-content {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 16px;
             font-family: 'Space Grotesk', sans-serif;
-            letter-spacing: 0.5px;
         }
 
         .social-link i:not(.arrow-icon) {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .arrow-icon {
-            font-size: 0.85rem !important;
-            opacity: 0.3;
+            font-size: 0.8rem !important;
+            opacity: 0.2;
             transition: all 0.3s ease;
         }
 
-        /* 💫 হোভার ও টাচ রেসপন্স */
+        /* 💫 আল্ট্রা-স্মুথ হোভার ও টাচ এফেক্টস */
         .social-link:hover, .social-link:active {
-            transform: translateY(-5px) scale(1.025);
-            border-color: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
+            transform: translateY(-4px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(30, 41, 59, 0.7);
         }
 
         .social-link:hover i:not(.arrow-icon) {
-            transform: scale(1.25);
+            transform: scale(1.2) rotate(5deg);
         }
 
         .social-link:hover .arrow-icon {
-            transform: translateX(6px);
+            transform: translateX(5px);
             opacity: 1;
         }
 
-        /* ব্র্যান্ডের নিয়ন গ্লো শ্যাডো */
-        .whatsapp:hover { box-shadow: 0 12px 25px rgba(37, 211, 102, 0.3); border-color: #25d366; background: rgba(37, 211, 102, 0.08); }
-        .facebook:hover { box-shadow: 0 12px 25px rgba(24, 119, 242, 0.3); border-color: #1877f2; background: rgba(24, 119, 242, 0.08); }
-        .instagram:hover { box-shadow: 0 12px 25px rgba(225, 48, 108, 0.3); border-color: #e1306c; background: rgba(225, 48, 108, 0.08); }
-        .tiktok:hover { box-shadow: 0 12px 25px rgba(255, 255, 255, 0.2); border-color: #ffffff; background: rgba(255, 255, 255, 0.08); }
+        /* ইন্ডিভিজুয়াল নিয়ন গ্লো ব্র্যান্ড কালার */
+        .whatsapp:hover { box-shadow: 0 12px 25px rgba(37, 211, 102, 0.2); border-color: rgba(37, 211, 102, 0.6); }
+        .facebook:hover { box-shadow: 0 12px 25px rgba(24, 119, 242, 0.2); border-color: rgba(24, 119, 242, 0.6); }
+        .instagram:hover { box-shadow: 0 12px 25px rgba(225, 48, 108, 0.2); border-color: rgba(225, 48, 108, 0.6); }
+        .tiktok:hover { box-shadow: 0 12px 25px rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.6); }
 
         .footer {
-            margin-top: 60px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
             letter-spacing: 2px;
             text-transform: uppercase;
             font-family: 'Space Grotesk', sans-serif;
-            opacity: 0.5;
+            opacity: 0.4;
+            margin-top: 15px;
+            flex-shrink: 0;
+        }
+
+        /* 📱 ছোট ভাইবের মডার্ন রেসপন্সিভনেস */
+        @media (max-height: 660px) {
+            .premium-avatar-wrapper { width: 95px; height: 95px; }
+            h1 { font-size: 1.9rem; margin-bottom: 5px; }
+            .social-link { padding: 13px 22px; }
+            .links-wrapper { gap: 12px; }
+            .profile-info { margin-bottom: 15px; }
         }
     </style>
 </head>
 <body>
 
+    <!-- ব্যাকগ্রাউন্ড নিয়ন লাইটস -->
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
     <div class="container">
-        <!-- ✨ নতুন ডিজাইনড ডাবল-লেয়ার্ড গ্লোয়িং আইকন -->
-        <div class="premium-avatar-wrapper">
-            <div class="premium-avatar">
-                <i class="fas fa-user-tie"></i>
+        
+        <!-- 🤵 আইকন সেকশন (নামের ঠিক ওপরে, একদম মাঝামাঝি) -->
+        <div class="avatar-section">
+            <div class="premium-avatar-wrapper">
+                <div class="premium-avatar">
+                    <i class="fas fa-user-tie"></i>
+                </div>
             </div>
         </div>
 
-        <!-- নাম -->
-        <h1>Asadul Islam <span>Hasan</span></h1>
-
-        <!-- 📋 ২ লাইনে লক করা সুন্দর ডেসক্রিপশন -->
-        <div class="bio">
-            Just a simple person who loves to live life cheerfully and values true connections. Feel free to reach out and connect through my profiles below!
+        <!-- প্রোফাইল মেইন ইনফো -->
+        <div class="profile-info">
+            <h1>Asadul Islam <span>Hasan</span></h1>
+            <!-- ২ লাইনে লকড ডেসক্রিপশন -->
+            <div class="bio">
+                Just a simple person who loves to live life cheerfully and values true connections. Feel free to reach out and connect through my profiles below!
+            </div>
         </div>
 
-        <!-- এনিমেটেড সোশ্যাল লিঙ্কসমূহ -->
+        <!-- আকর্ষণীয় এনিমেটেড বাটনসমূহ -->
         <div class="links-wrapper">
             
             <!-- WhatsApp -->
