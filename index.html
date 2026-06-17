@@ -1,342 +1,282 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>তাহমিন | ডিজিটাল পোর্টফোলিও এবং বায়ো ডাটা</title>
-    <!-- গিটহাব পেজে হোস্ট করার জন্য এই ফাইলে CSS এবং HTML একসাথে দেওয়া হলো -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Asadul Islam Hasan | Digital Card</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* মূল ডিজাইন ও ভেরিয়েবল */
         :root {
-            --bg-dark: #1A212D;
-            --bg-header: #13171F;
-            --copper-accent: #C78B60;
-            --text-primary: #FFFFFF;
-            --text-secondary: #B0B7C3;
-            --shadow: 0 4px 12px rgba(0,0,0,0.3);
-            --font-family: 'Poppins', sans-serif; /* Poppins Font */
+            --bg-dark: #090d16;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --accent-glow: #c78b60;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
         }
 
-        /* গুগল ফন্ট ইম্পোর্ট */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-        /* সাধারণ রিসেট */
-        body {
+        * {
             margin: 0;
-            font-family: var(--font-family);
-            background-color: var(--bg-dark);
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; padding: 0; margin: 0; }
-        img { max-width: 100%; height: auto; display: block; }
-        h1, h2, h3 { color: var(--text-primary); margin: 0; }
-
-        /* হেডার ও নেভিগেশন */
-        header {
-            background-color: var(--bg-header);
-            padding: 1rem 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
+            padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .logo { font-size: 1.5rem; font-weight: 600; color: var(--text-primary); }
-        .logo span { color: var(--copper-accent); }
-
-        .nav-links { display: flex; gap: 1.5rem; }
-        .nav-links li a { font-size: 0.9rem; transition: color 0.3s; }
-        .nav-links li a:hover { color: var(--copper-accent); }
-
-        /* হিরো সেকশন */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(rgba(19, 23, 31, 0.9), rgba(19, 23, 31, 0.9)),
-                        url('https://source.unsplash.com/random/1920x1080?abstract,dark'); /* ব্যাকগ্রাউন্ড ইমেজ */
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-            padding: 0 10%;
-            padding-top: 80px; /* হেডার এডজাস্ট */
-        }
-
-        .hero-content h3 { font-size: 1.2rem; font-weight: 300; color: var(--text-secondary); margin-bottom: 0.5rem; }
-        .hero-content h1 { font-size: 3rem; font-weight: 600; text-transform: uppercase; margin-bottom: 2rem; }
-        .hero-content h1 span { color: var(--copper-accent); }
-
-        .btn-copper {
-            display: inline-block;
-            background-color: var(--copper-accent);
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-
-        .btn-copper:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(199, 139, 96, 0.4);
-        }
-
-        /* প্রোফাইল ইমেজ ও তথ্য সেকশন */
-        .profile-info {
-            padding: 5rem 10%;
-            background-color: var(--bg-header);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .profile-grid {
-            display: grid;
-            grid-template-columns: 35% 65%;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .profile-image-container {
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-
-        .profile-img-frame {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 5px solid var(--copper-accent);
-            box-shadow: var(--shadow);
-            position: relative;
-            z-index: 2;
-        }
-
-        .profile-img-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-details h2 { font-size: 2.2rem; margin-bottom: 1rem; }
-        .profile-details p { margin-bottom: 2rem; }
-
-        /* দক্ষতা ও আইকন */
-        .skills-grid {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .skill-icon {
-            font-size: 2rem;
-            color: var(--copper-accent);
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-dark);
-            width: 60px;
-            height: 60px;
+            background-image: radial-gradient(circle at 50% 15%, rgba(199, 139, 96, 0.15), transparent 50%);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* PC এবং MOBILE এর জন্য ইন্টেলিজেন্ট কন্টেইনার */
+        .container {
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* PC সাইজ (বড় স্ক্রিন) */
+        @media (min-width: 481px) {
+            .container {
+                max-width: 480px;
+                border-radius: 30px;
+                padding: 45px 30px;
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(199, 139, 96, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            .container:hover {
+                transform: translateY(-8px);
+                border-color: rgba(199, 139, 96, 0.3);
+                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 50px rgba(199, 139, 96, 0.1);
+            }
+        }
+
+        /* MOBILE সাইজ (ফুল স্ক্রিন অ্যাপ লুক) */
+        @media (max-width: 480px) {
+            body {
+                padding: 0;
+                align-items: flex-start;
+                background-image: radial-gradient(circle at 50% 10%, rgba(199, 139, 96, 0.2), transparent 60%);
+            }
+            .container {
+                max-width: 100%;
+                min-height: 100vh;
+                border-radius: 0px;
+                padding: 50px 24px 40px 24px;
+                background: transparent;
+                box-shadow: none;
+                border: none;
+            }
+        }
+
+        /* সিএসএস দিয়ে তৈরি সুন্দর এনিমেটেড আইকন */
+        .icon-avatar-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: 50%;
+            border: 3px solid var(--accent-glow);
+            box-shadow: 0 0 20px rgba(199, 139, 96, 0.2);
+            animation: pulseGlow 30px infinite alternate;
+        }
+
+        .icon-avatar-wrapper i {
+            font-size: 3.5rem;
+            color: var(--accent-glow);
+            text-shadow: 0 0 10px rgba(199, 139, 96, 0.5);
+        }
+
+        /* আইকনের মৃদু পালস অ্যানিমেশন ইফেক্ট */
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 15px rgba(199, 139, 96, 0.2);
+                transform: scale(1);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(199, 139, 96, 0.5);
+                transform: scale(1.03);
+            }
+        }
+
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+        }
+
+        h1 span {
+            color: var(--accent-glow);
+            text-shadow: 0 0 15px rgba(199, 139, 96, 0.3);
+        }
+
+        /* সাধারণ মানুষের মতো সুন্দর ২ লাইনের ইংরেজি বায়ো */
+        .bio {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 40px;
+            font-weight: 400;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* লিংক কন্টেইনার */
+        .links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .social-link {
             display: flex;
             align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: var(--shadow);
+            justify-content: space-between;
+            padding: 18px 26px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
         }
 
-        .skill-icon:hover {
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(199, 139, 96, 0.3);
-        }
-
-        /* আমার কাজ সেকশন */
-        .my-work {
-            padding: 5rem 10%;
-            text-align: center;
-        }
-
-        .my-work h2 { font-size: 2.2rem; margin-bottom: 3rem; }
-
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .work-card {
-            background-color: var(--bg-header);
-            border-radius: 1rem;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: var(--shadow);
-        }
-
-        .work-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-        }
-
-        .work-img-container {
-            position: relative;
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .work-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .work-card:hover .work-img-container img {
-            transform: scale(1.1);
-        }
-
-        .work-card-content { padding: 1.5rem; text-align: left; }
-        .work-card-content h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-        .work-card-content p { font-size: 0.85rem; }
-
-        /* যোগাযোগ ও ফুটার */
-        footer {
-            background-color: var(--bg-header);
-            padding: 3rem 10%;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .social-icons {
+        .link-content {
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            align-items: center;
+            gap: 15px;
         }
 
-        .social-icon {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            transition: color 0.3s;
+        .social-link i {
+            font-size: 1.5rem;
         }
 
-        .social-icon:hover { color: var(--copper-accent); }
+        .arrow-icon {
+            font-size: 0.85rem !important;
+            opacity: 0.4;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
 
-        .copyright { font-size: 0.85rem; }
+        /* হোভার এবং টাচ গ্লো ইফেক্ট */
+        .whatsapp:hover, .whatsapp:active {
+            border-color: #25d366;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.2);
+            background: rgba(37, 211, 102, 0.1);
+        }
+        .facebook:hover, .facebook:active {
+            border-color: #1877f2;
+            box-shadow: 0 0 20px rgba(24, 119, 242, 0.2);
+            background: rgba(24, 119, 242, 0.1);
+        }
+        .instagram:hover, .instagram:active {
+            border-color: #e1306c;
+            box-shadow: 0 0 20px rgba(225, 48, 108, 0.2);
+            background: rgba(225, 48, 108, 0.1);
+        }
+        .tiktok:hover, .tiktok:active {
+            border-color: #ff0050;
+            box-shadow: 0 0 20px rgba(255, 0, 80, 0.2);
+            background: rgba(255, 0, 80, 0.1);
+        }
 
-        /* মিডিয়া কুয়েরি (মোবাইলের জন্য) */
-        @media (max-width: 768px) {
-            header { padding: 1rem 5%; }
-            .hero-content h1 { font-size: 2.2rem; }
-            .profile-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .profile-img-frame { width: 200px; height: 200px; }
-            .work-grid { grid-template-columns: 1fr; }
+        .social-link:hover .arrow-icon {
+            transform: translateX(5px);
+            opacity: 1;
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
-    <!-- হেডার এবং নেভিগেশন -->
-    <header>
-        <a href="#" class="logo"><span>TAHMIN</span></a>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <!-- আর কোনো লিঙ্ক যোগ করতে চাইলে এখানে করতে পারেন -->
-            </ul>
-        </nav>
-    </header>
-
-    <!-- হিরো সেকশন -->
-    <section class="hero">
-        <div class="hero-content">
-            <h3>TAHMIN AHMED | DEVELOPER. DESIGNER. CREATOR.</h3>
-            <h1>BIO DATA | MY DIGITAL <span>PORTFOLIO</span></h1>
-            <a href="#resume" class="btn-copper">View Resume</a>
+    <div class="container">
+        <!-- ছবির বদলে কোড দিয়ে তৈরি প্রিমিয়াম এনিমেটেড আইকন -->
+        <div class="icon-avatar-wrapper">
+            <i class="fas fa-user-astronaut"></i>
         </div>
-    </section>
 
-    <!-- প্রোফাইল তথ্য এবং ছবি -->
-    <section id="about" class="profile-info">
-        <div class="profile-grid">
-            <div class="profile-image-container">
-                <div class="profile-img-frame">
-                    <!-- প্রোফাইল ছবি: আপনার ছবির লিঙ্ক এখানে বসান বা images/ ফোল্ডারে রাখুন -->
-                    <img src="https://via.placeholder.com/300x300.png?text=Tahmin+Ahmed" alt="প্রোফাইল ছবি">
-                </div>
-            </div>
-            <div class="profile-details">
-                <h2>সামারি (Summary)</h2>
-                <p>এখানে আপনার নিজের সম্পর্কে সংক্ষিপ্ত বিবরণ লিখুন। আপনি কি করেন, আপনার কি কি দক্ষতা আছে এবং আপনি কি ধরনের কাজ খুঁজছেন তা উল্লেখ করুন।</p>
-                <h2>দক্ষতা (Skills)</h2>
-                <div class="skills-grid">
-                    <!-- বিভিন্ন দক্ষতার আইকন। আমি placeholders ব্যবহার করেছি, আপনি ফন্ট অসাম আইকন ব্যবহার করতে পারেন -->
-                    <div class="skill-icon">H5</div> <!-- HTML5 -->
-                    <div class="skill-icon">C3</div> <!-- CSS3 -->
-                    <div class="skill-icon">JS</div> <!-- JavaScript -->
-                    <div class="skill-icon">R</div> <!-- React -->
-                    <div class="skill-icon">U/I</div> <!-- UI/UX -->
-                    <div class="skill-icon">Git</div> <!-- Git -->
-                </div>
-            </div>
-        </div>
-    </section>
+        <!-- নাম -->
+        <h1>Asadul Islam <span>Hasan</span></h1>
 
-    <!-- আমার কাজ সেকশন -->
-    <section id="work" class="my-work">
-        <h2>আমার কাজ (My Work)</h2>
-        <div class="work-grid">
-            <!-- কাজ ১ -->
-            <div class="work-card">
-                <div class="work-img-container">
-                    <img src="https://via.placeholder.com/400x200.png?text=Web+App+X" alt="কাজ ১">
-                </div>
-                <div class="work-card-content">
-                    <h3>ওয়েব অ্যাপ X</h3>
-                    <p>আপনার এই প্রকল্পের সংক্ষিপ্ত বিবরণ। আপনি কি ধরণের প্রযুক্তি ব্যবহার করেছেন এবং এটি কি সমস্যার সমাধান করে।</p>
-                </div>
-            </div>
-            <!-- কাজ ২ -->
-            <div class="work-card">
-                <div class="work-img-container">
-                    <img src="https://via.placeholder.com/400x200.png?text=Mobile+Interface+Y" alt="কাজ ২">
-                </div>
-                <div class="work-card-content">
-                    <h3>মোবাইল ইন্টারফেস Y</h3>
-                    <p>আপনার এই প্রকল্পের সংক্ষিপ্ত বিবরণ। আপনি কি ধরণের প্রযুক্তি ব্যবহার করেছেন এবং এটি কি সমস্যার সমাধান করে।</p>
-                </div>
-            </div>
-            <!-- কাজ ৩ -->
-            <div class="work-card">
-                <div class="work-img-container">
-                    <img src="https://via.placeholder.com/400x200.png?text=Mallo+Popok+X" alt="কাজ ৩">
-                </div>
-                <div class="work-card-content">
-                    <h3>Mallo popok X</h3>
-                    <p>আপনার এই প্রকল্পের সংক্ষিপ্ত বিবরণ। আপনি কি ধরণের প্রযুক্তি ব্যবহার করেছেন এবং এটি কি সমস্যার সমাধান করে।</p>
-                </div>
-            </div>
+        <!-- সাধারণ মানুষের মতো সহজ সরল ইংরেজি বায়ো -->
+        <div class="bio">
+            Just a simple person who loves to live life cheerfully and values true connections. <br>
+            Feel free to reach out and connect with me through my profiles below!
         </div>
-    </section>
 
-    <!-- ফুটার সেকশন (যোগাযোগ সহ) -->
-    <footer id="contact">
-        <div class="social-icons">
-            <a href="#" class="social-icon">Li</a> <!-- LinkedIn -->
-            <a href="#" class="social-icon">Gh</a> <!-- GitHub -->
-            <a href="#" class="social-icon">Tw</a> <!-- Twitter -->
-            <a href="#" class="social-icon">Ig</a> <!-- Instagram -->
+        <!-- সোশ্যাল লিঙ্কসমূহ -->
+        <div class="links-wrapper">
+            
+            <!-- WhatsApp -->
+            <a href="https://wa.me/8801917757634" target="_blank" class="social-link whatsapp">
+                <div class="link-content">
+                    <i class="fab fa-whatsapp" style="color: #25d366;"></i>
+                    <span>WhatsApp</span>
+                </div>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/profile.php?id=100000422314350" target="_blank" class="social-link facebook">
+                <div class="link-content">
+                    <i class="fab fa-facebook-f" style="color: #1877f2;"></i>
+                    <span>Facebook</span>
+                </div>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/asadulislamhasan143" target="_blank" class="social-link instagram">
+                <div class="link-content">
+                    <i class="fab fa-instagram" style="color: #e1306c;"></i>
+                    <span>Instagram</span>
+                </div>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </a>
+
+            <!-- Tiktok -->
+            <a href="https://www.tiktok.com/@asadulislamhasan143" target="_blank" class="social-link tiktok">
+                <div class="link-content">
+                    <i class="fab fa-tiktok" style="color: #ffffff;"></i>
+                    <span>TikTok</span>
+                </div>
+                <i class="fas fa-chevron-right arrow-icon"></i>
+            </a>
+
         </div>
-        <p class="copyright">Copyright © 2024 TAHMIN, All rights reserved.</p>
-    </footer>
+
+        <!-- ফুটার -->
+        <div class="footer">
+            © 2026 ASADUL ISLAM HASAN
+        </div>
+    </div>
 
 </body>
 </html>
