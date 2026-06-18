@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Asadul Islam Hasan | Connect</title>
+    <title>Asadul Islam Hasan's Contact Info</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -23,42 +23,35 @@
             height: 100vh;
             width: 100vw;
             overflow: hidden;
-            padding: 20px;
             position: relative;
         }
 
-        /* ১. পুরো স্ক্রিন জুড়ে ঘন ও এলোমেলো ব্যাকগ্রাউন্ড গ্রিড */
-        .bg-matrix {
+        /* ১. সম্পূর্ণ স্ক্রিন জুড়ে অতিরিক্ত ঘন এবং আরও চিত/হেলানো ব্যাকগ্রাউন্ড ক্যানভাস */
+        #bg-canvas {
             position: absolute;
             top: -10%;
             left: -10%;
             width: 120%;
             height: 120%;
-            display: flex;
-            flex-wrap: wrap;
-            align-content: flex-start;
-            gap: 12px 24px; /* শব্দের মাঝের দূরত্ব */
-            padding: 20px;
-            opacity: 0.05; /* হালকা কিন্তু স্পষ্ট */
-            transform: rotate(-12deg); /* আকর্ষণীয় বাঁকা লুক */
+            overflow: hidden;
             pointer-events: none;
             user-select: none;
             z-index: 0;
-            overflow: hidden;
         }
 
-        .bg-word {
-            font-size: 10px; /* ছোট ও প্রিমিয়াম সাইজ */
+        .random-word {
+            position: absolute;
             font-weight: 900;
             color: #cbd5e1;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            white-space: nowrap;
         }
 
-        /* Main Layout Structure */
+        /* Main Layout - পিসি ও মোবাইলের ঠিক মাঝামাঝি লক করা */
         .main-layout {
             width: 100%;
-            max-width: 380px;
+            max-width: 385px;
+            padding: 25px;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -69,46 +62,49 @@
         /* প্রোফাইল ইমেজের অনবরত ভাসমান অ্যানিমেশন */
         @keyframes floatImage {
             0% { transform: translateY(0); box-shadow: 0 0 20px rgba(0, 242, 254, 0.2); border-color: #00f2fe; }
-            50% { transform: translateY(-6px); box-shadow: 0 0 35px rgba(0, 242, 254, 0.4); border-color: #ff007f; }
+            50% { transform: translateY(-8px); box-shadow: 0 0 35px rgba(0, 242, 254, 0.4); border-color: #ff007f; }
             100% { transform: translateY(0); box-shadow: 0 0 20px rgba(0, 242, 254, 0.2); border-color: #00f2fe; }
         }
 
-        /* নিচ থেকে ওপরে ওঠার দ্রুত অ্যানিমেশন */
+        /* নিচ থেকে ওপরে ওঠার দ্রুত এন্ট্রি অ্যানিমেশন */
         @keyframes slideUpFast {
-            from { opacity: 0; transform: translateY(35px); }
+            from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* প্রোফাইল পিকচার স্টাইল */
         .profile-img {
-            width: 95px;
-            height: 95px;
+            width: 115px;
+            height: 115px;
             border-radius: 50%;
             object-fit: cover;
-            margin: 0 auto 18px auto;
-            border: 3px solid #00f2fe;
+            margin: 0 auto 22px auto;
+            border: 3.5px solid #00f2fe;
             animation: floatImage 4s infinite ease-in-out, slideUpFast 0.5s ease-out;
             display: block;
         }
 
         /* টাইপিং টেক্সট স্টাইল */
         h1 {
-            font-size: 1.65rem;
+            font-size: 1.7rem;
             font-weight: 700;
             margin-bottom: 8px;
             letter-spacing: 0.5px;
             color: #ffffff;
             display: inline-block;
             width: 100%;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.8);
         }
         
         .bio { 
             color: #e2e8f0; 
-            font-size: 0.9rem; 
-            line-height: 1.4;
-            margin-bottom: 28px; 
+            font-size: 0.92rem; 
+            line-height: 1.45;
+            margin-bottom: 30px; 
             font-weight: 400;
             display: inline-block;
             width: 100%;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
 
         /* টাইপিং কার্সার ব্লিংকিং */
@@ -122,11 +118,11 @@
             50% { opacity: 1; }
         }
 
-        .links-container { display: flex; flex-direction: column; gap: 15px; }
+        .links-container { display: flex; flex-direction: column; gap: 16px; }
 
-        /* বাটনগুলোর দ্রুত এন্ট্রি অ্যানিমেশন */
+        /* বাটনগুলোর এন্ট্রি অ্যানিমেশন */
         .link-btn {
-            padding: 15px;
+            padding: 16px;
             color: white;
             font-weight: 600;
             border-radius: 16px;
@@ -139,49 +135,53 @@
             gap: 12px;
             cursor: pointer;
             position: relative;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
             opacity: 0;
             animation: slideUpFast 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2) forwards;
         }
 
         /* বাটন এন্ট্রি টাইমিং */
-        .btn-1 { animation-delay: 0.4s; }
-        .btn-2 { animation-delay: 0.55s; }
-        .btn-3 { animation-delay: 0.7s; }
-        .btn-4 { animation-delay: 0.85s; }
+        .btn-1 { animation-delay: 0.35s; }
+        .btn-2 { animation-delay: 0.5s; }
+        .btn-3 { animation-delay: 0.65s; }
+        .btn-4 { animation-delay: 0.8s; }
 
         .link-btn.clicked {
             transform: scale(0.93);
             filter: brightness(1.3);
         }
 
-        /* Gradients */
+        /* Premium Gradients */
         .whatsapp { background: linear-gradient(45deg, #11998e, #25D366, #38ef7d); }
         .facebook { background: linear-gradient(45deg, #00c6ff, #1877F2, #0072ff); }
         .instagram { background: linear-gradient(45deg, #fdbb2d, #dc2743, #bc1888); }
         .tiktok { background: linear-gradient(45deg, #ff007f, #000000, #00f2fe); }
         
         .footer { 
-            margin-top: 30px; 
+            margin-top: 32px; 
             font-size: 0.75rem; 
             color: #64748b; 
             letter-spacing: 2px; 
             text-transform: uppercase;
             opacity: 0;
-            animation: slideUpFast 0.5s ease-out 1.0s forwards;
+            animation: slideUpFast 0.5s ease-out 0.95s forwards;
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-matrix" id="matrix"></div>
+    <!-- ব্যাকগ্রাউন্ড ক্যানভাস -->
+    <div id="bg-canvas"></div>
 
     <div class="main-layout">
+        <!-- লোকাল প্রোফাইল পিকচার (profile.png) -->
         <img src="profile.png" alt="Profile" class="profile-img" onerror="this.src='https://via.placeholder.com/150'">
         
+        <!-- টাইপিং টেক্সট এলিমেন্ট -->
         <h1><span id="type-name"></span><span id="cursor-name" class="typed-cursor">|</span></h1>
         <p class="bio"><span id="type-bio"></span><span id="cursor-bio" class="typed-cursor" style="display:none;">|</span></p>
 
+        <!-- সোশ্যাল বাটনসমূহ -->
         <div class="links-container">
             <div onclick="tapLink('https://wa.me/8801917757634', this)" class="link-btn whatsapp btn-1"><i class="fab fa-whatsapp"></i> WhatsApp</div>
             <div onclick="tapLink('https://www.facebook.com/profile.php?id=100000422314350', this)" class="link-btn facebook btn-2"><i class="fab fa-facebook-f"></i> Facebook</div>
@@ -194,30 +194,51 @@
         </div>
     </div>
 
+    <!-- ডাইনামিক ব্যাকগ্রাউন্ড এবং টাইপিং স্ক্রিপ্ট -->
     <script>
         const nameText = "Asadul Islam Hasan";
         const bioText = "Living a simple life with extraordinary dreams.\nWelcome to my digital space.";
         
-        // ব্যাকগ্রাউন্ডের জন্য শব্দের তালিকা
-        const wordsArray = ["HASAN", "NFC", "CONNECT", "DIGITAL", "SOCIAL", "LINK", "TAP", "WAVE", "SHARE", "PROFILE"];
+        const words = ["HASAN", "NFC", "CONNECT", "DIGITAL", "SOCIAL", "LINK", "TAP", "WAVE", "SHARE", "PROFILE", "ME"];
 
         function initPage() {
-            // ১. ব্যাকগ্রাউন্ডে পুরো স্ক্রিন জুড়ে ঘন করে শব্দ বসানোর লুপ
-            const matrix = document.getElementById("matrix");
-            const totalWordsNeeded = 350; // পুরো স্ক্রিন কাভার করার জন্য যথেষ্ট শব্দ
-            
-            let matrixHTML = "";
-            for (let i = 0; i < totalWordsNeeded; i++) {
-                // র্যান্ডমলি শব্দ সিলেক্ট করা
-                const randomWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
-                matrixHTML += `<span class="bg-word">${randomWord}</span>`;
-            }
-            matrix.innerHTML = matrixHTML;
-
-            // ২. টাইপিং অ্যানিমেশন শুরু
+            generateUltraDenseBackground();
             startTyping();
         }
 
+        // ৩. সুপার ডেন্স এবং আরও চিত/হেলানো ব্যাকগ্রাউন্ড জেনারেটর
+        function generateUltraDenseBackground() {
+            const canvas = document.getElementById("bg-canvas");
+            const wordCount = 320; 
+            
+            for (let i = 0; i < wordCount; i++) {
+                const span = document.createElement("span");
+                span.className = "random-word";
+                span.innerText = words[Math.floor(Math.random() * words.length)];
+                
+                const randomX = Math.random() * 100;
+                const randomY = Math.random() * 100;
+                span.style.left = `${randomX}%`;
+                span.style.top = `${randomY}%`;
+                
+                const randomSize = Math.floor(Math.random() * 23) + 10;
+                span.style.fontSize = `${randomSize}px`;
+                
+                // লেখাগুলোকে আরও বেশি চিত/হেলানো করার জন্য রোটেশন অ্যাঙ্গেল বাড়ানো হয়েছে (-75deg থেকে +75deg)
+                const randomRotation = Math.floor(Math.random() * 150) - 75;
+                
+                // লেখাগুলোকে আরও ইউনিক স্টাইলে চিত করতে skewX (বাঁকা করা) যোগ করা হয়েছে
+                const randomSkew = Math.floor(Math.random() * 20) - 10; 
+                span.style.transform = `rotate(${randomRotation}deg) skewX(${randomSkew}deg)`;
+                
+                const randomOpacity = (Math.random() * 0.05) + 0.04; 
+                span.style.opacity = randomOpacity;
+                
+                canvas.appendChild(span);
+            }
+        }
+
+        // টাইপিং অ্যানিমেশন লজিক
         function startTyping() {
             let nameIndex = 0;
             let bioIndex = 0;
@@ -230,7 +251,7 @@
                 if (nameIndex < nameText.length) {
                     nameTarget.innerHTML += nameText.charAt(nameIndex);
                     nameIndex++;
-                    setTimeout(typeName, 50);
+                    setTimeout(typeName, 45);
                 } else {
                     nameCursor.style.display = "none";
                     bioCursor.style.display = "inline";
@@ -246,7 +267,7 @@
                         bioTarget.innerHTML += bioText.charAt(bioIndex);
                     }
                     bioIndex++;
-                    setTimeout(typeBio, 30);
+                    setTimeout(typeBio, 25);
                 } else {
                     bioCursor.style.display = "none";
                 }
@@ -255,7 +276,6 @@
             typeName();
         }
 
-        // পেজ লোড সম্পন্ন হওয়ার সাথে সাথে সব রান হবে
         document.addEventListener("DOMContentLoaded", initPage);
 
         function tapLink(url, element) {
