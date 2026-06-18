@@ -3,395 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Asadul Islam Hasan | Digital Card</title>
-    <!-- Font Awesome Icons -->
+    <title>Asadul Islam Hasan | Connect</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
     <style>
-        :root {
-            --bg-dark: #030712;
-            --card-bg: rgba(15, 23, 42, 0.45);
-            --accent-copper: #d9966c;
-            --accent-gold: #f59e0b;
-            --accent-glow: rgba(217, 150, 108, 0.3);
-            --text-main: #ffffff;
-            --text-muted: #94a3b8;
-        }
-
-        /* 🚫 স্ক্রোলিং পুরোপুরি লক */
-        html, body {
+        * {
             margin: 0;
             padding: 0;
-            width: 100%;
-            height: 100vh;
-            height: -webkit-fill-available;
-            overflow: hidden;
             box-sizing: border-box;
-            background-color: var(--bg-dark);
-        }
-
-        * {
-            box-sizing: inherit;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            color: var(--text-main);
+            background-color: #04060d;
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            padding: 20px;
             position: relative;
         }
 
-        /* 🌌 মডার্ন এনিমেটেড ব্যাকগ্রাউন্ড অরবস */
-        .bg-glow-1, .bg-glow-2 {
+        /* ১. পুরো স্ক্রিন জুড়ে ঘন ও এলোমেলো ব্যাকগ্রাউন্ড গ্রিড */
+        .bg-matrix {
             position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--accent-glow), transparent 70%);
-            z-index: -1;
-            filter: blur(40px);
-        }
-        .bg-glow-1 {
-            width: 400px; height: 400px;
-            top: -10%; left: -10%;
-            animation: pulseGlow 8s ease-in-out infinite alternate;
-        }
-        .bg-glow-2 {
-            width: 500px; height: 500px;
-            bottom: -15%; right: -15%;
-            animation: pulseGlow 10s ease-in-out infinite alternate-reverse;
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
-            100% { transform: scale(1.2) translate(20px, -20px); opacity: 0.8; }
-        }
-
-        /* 📦 মেইন কার্ড কন্টেইনার */
-        .container {
-            width: 100%;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            /* মসৃণ এন্ট্রান্স অ্যানিমেশন */
-            animation: cardEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            opacity: 0;
-            transform: scale(0.95) translateY(15px);
-        }
-
-        @keyframes cardEntrance {
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        /* 🖥️ PC ভিউ */
-        @media (min-width: 481px) {
-            .container {
-                max-width: 430px;
-                background: var(--card-bg);
-                backdrop-filter: blur(30px);
-                -webkit-backdrop-filter: blur(30px);
-                border-radius: 32px;
-                padding: 45px 35px;
-                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7),
-                            inset 0 1px 1px rgba(255, 255, 255, 0.1);
-                border: 1px solid rgba(217, 150, 108, 0.2);
-                transition: border-color 0.5s ease;
-            }
-            .container:hover {
-                border-color: rgba(217, 150, 108, 0.4);
-            }
-        }
-
-        /* 📱 MOBILE ভিউ (নো স্ক্রোল ও ফিট স্ক্রিন) */
-        @media (max-width: 480px) {
-            body { padding: 24px; }
-            .container {
-                height: 100%;
-                max-width: 100%;
-                justify-content: space-between;
-                padding: 15px 0;
-            }
-        }
-
-        /* 🤵 মাঝখানে থাকা প্রিমিয়াম এনিমেটেড আইকন */
-        .avatar-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            margin-bottom: 20px;
-            flex-shrink: 0;
-        }
-
-        .premium-avatar-wrapper {
-            position: relative;
-            width: 110px;
-            height: 110px;
-            animation: floating 4.5s ease-in-out infinite;
-        }
-
-        .premium-avatar {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #0f172a, #030712);
-            border-radius: 50%;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            z-index: 2;
-        }
-
-        /* আইকনের চারপাশে অনবরত ঘূর্ণায়মান সুক্ষ্ম নিয়ন রিং */
-        .premium-avatar-wrapper::before, .premium-avatar-wrapper::after {
-            content: '';
-            position: absolute;
-            top: -3px; left: -3px; right: -3px; bottom: -3px;
-            border-radius: 50%;
-            background: linear-gradient(0deg, transparent, var(--accent-copper), var(--accent-gold));
-            z-index: 1;
-            animation: orbitRotate 4s linear infinite;
-        }
-
-        .premium-avatar-wrapper::after {
-            filter: blur(10px);
-            opacity: 0.7;
-        }
-
-        @keyframes orbitRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .premium-avatar i {
-            font-size: 3rem;
-            background: linear-gradient(135deg, #ffffff, #fef08a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 2px 8px rgba(245, 158, 11, 0.3));
-        }
-
-        @keyframes floating {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
-
-        /* প্রোফাইল টেক্সট */
-        .profile-info {
-            width: 100%;
-            margin-bottom: 25px;
-            flex-shrink: 0;
-        }
-
-        h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
-        }
-
-        h1 span {
-            background: linear-gradient(135deg, var(--accent-copper), var(--accent-gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .bio {
-            font-size: 0.92rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-            padding: 0 20px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 12px 24px; /* শব্দের মাঝের দূরত্ব */
+            padding: 20px;
+            opacity: 0.05; /* হালকা কিন্তু স্পষ্ট */
+            transform: rotate(-12deg); /* আকর্ষণীয় বাঁকা লুক */
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
             overflow: hidden;
         }
 
-        /* 📋 এনিমেটেড বাটন র্যাপার */
-        .links-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+        .bg-word {
+            font-size: 10px; /* ছোট ও প্রিমিয়াম সাইজ */
+            font-weight: 900;
+            color: #cbd5e1;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Layout Structure */
+        .main-layout {
             width: 100%;
             max-width: 380px;
-            margin: auto 0;
-            flex-grow: 1;
-            justify-content: center;
-        }
-
-        .social-link {
+            text-align: center;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 24px;
-            border-radius: 20px;
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 1.05rem;
-            background: rgba(30, 41, 59, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-            
-            /* একের পর এক বাটন লোড হওয়ার ট্রিক */
-            opacity: 0;
-            transform: translateY(20px);
-            animation: linkEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 1;
         }
 
-        .social-link:nth-child(1) { animation-delay: 0.15s; }
-        .social-link:nth-child(2) { animation-delay: 0.25s; }
-        .social-link:nth-child(3) { animation-delay: 0.35s; }
-        .social-link:nth-child(4) { animation-delay: 0.45s; }
+        /* প্রোফাইল ইমেজের অনবরত ভাসমান অ্যানিমেশন */
+        @keyframes floatImage {
+            0% { transform: translateY(0); box-shadow: 0 0 20px rgba(0, 242, 254, 0.2); border-color: #00f2fe; }
+            50% { transform: translateY(-6px); box-shadow: 0 0 35px rgba(0, 242, 254, 0.4); border-color: #ff007f; }
+            100% { transform: translateY(0); box-shadow: 0 0 20px rgba(0, 242, 254, 0.2); border-color: #00f2fe; }
+        }
 
-        @keyframes linkEntrance {
+        /* নিচ থেকে ওপরে ওঠার দ্রুত অ্যানিমেশন */
+        @keyframes slideUpFast {
+            from { opacity: 0; transform: translateY(35px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .link-content {
+        .profile-img {
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 18px auto;
+            border: 3px solid #00f2fe;
+            animation: floatImage 4s infinite ease-in-out, slideUpFast 0.5s ease-out;
+            display: block;
+        }
+
+        /* টাইপিং টেক্সট স্টাইল */
+        h1 {
+            font-size: 1.65rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .bio { 
+            color: #e2e8f0; 
+            font-size: 0.9rem; 
+            line-height: 1.4;
+            margin-bottom: 28px; 
+            font-weight: 400;
+            display: inline-block;
+            width: 100%;
+        }
+
+        /* টাইপিং কার্সার ব্লিংকিং */
+        .typed-cursor {
+            font-weight: bold;
+            color: #00f2fe;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .links-container { display: flex; flex-direction: column; gap: 15px; }
+
+        /* বাটনগুলোর দ্রুত এন্ট্রি অ্যানিমেশন */
+        .link-btn {
+            padding: 15px;
+            color: white;
+            font-weight: 600;
+            border-radius: 16px;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
-            gap: 16px;
-            font-family: 'Space Grotesk', sans-serif;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            animation: slideUpFast 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2) forwards;
         }
 
-        .social-link i:not(.arrow-icon) {
-            font-size: 1.5rem;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* বাটন এন্ট্রি টাইমিং */
+        .btn-1 { animation-delay: 0.4s; }
+        .btn-2 { animation-delay: 0.55s; }
+        .btn-3 { animation-delay: 0.7s; }
+        .btn-4 { animation-delay: 0.85s; }
+
+        .link-btn.clicked {
+            transform: scale(0.93);
+            filter: brightness(1.3);
         }
 
-        .arrow-icon {
-            font-size: 0.8rem !important;
-            opacity: 0.2;
-            transition: all 0.3s ease;
-        }
-
-        /* 💫 আল্ট্রা-স্মুথ হোভার ও টাচ এফেক্টস */
-        .social-link:hover, .social-link:active {
-            transform: translateY(-4px) scale(1.02);
-            border-color: rgba(255, 255, 255, 0.15);
-            background: rgba(30, 41, 59, 0.7);
-        }
-
-        .social-link:hover i:not(.arrow-icon) {
-            transform: scale(1.2) rotate(5deg);
-        }
-
-        .social-link:hover .arrow-icon {
-            transform: translateX(5px);
-            opacity: 1;
-        }
-
-        /* ইন্ডিভিজুয়াল নিয়ন গ্লো ব্র্যান্ড কালার */
-        .whatsapp:hover { box-shadow: 0 12px 25px rgba(37, 211, 102, 0.2); border-color: rgba(37, 211, 102, 0.6); }
-        .facebook:hover { box-shadow: 0 12px 25px rgba(24, 119, 242, 0.2); border-color: rgba(24, 119, 242, 0.6); }
-        .instagram:hover { box-shadow: 0 12px 25px rgba(225, 48, 108, 0.2); border-color: rgba(225, 48, 108, 0.6); }
-        .tiktok:hover { box-shadow: 0 12px 25px rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.6); }
-
-        .footer {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            letter-spacing: 2px;
+        /* Gradients */
+        .whatsapp { background: linear-gradient(45deg, #11998e, #25D366, #38ef7d); }
+        .facebook { background: linear-gradient(45deg, #00c6ff, #1877F2, #0072ff); }
+        .instagram { background: linear-gradient(45deg, #fdbb2d, #dc2743, #bc1888); }
+        .tiktok { background: linear-gradient(45deg, #ff007f, #000000, #00f2fe); }
+        
+        .footer { 
+            margin-top: 30px; 
+            font-size: 0.75rem; 
+            color: #64748b; 
+            letter-spacing: 2px; 
             text-transform: uppercase;
-            font-family: 'Space Grotesk', sans-serif;
-            opacity: 0.4;
-            margin-top: 15px;
-            flex-shrink: 0;
-        }
-
-        /* 📱 ছোট ভাইবের মডার্ন রেসপন্সিভনেস */
-        @media (max-height: 660px) {
-            .premium-avatar-wrapper { width: 95px; height: 95px; }
-            h1 { font-size: 1.9rem; margin-bottom: 5px; }
-            .social-link { padding: 13px 22px; }
-            .links-wrapper { gap: 12px; }
-            .profile-info { margin-bottom: 15px; }
+            opacity: 0;
+            animation: slideUpFast 0.5s ease-out 1.0s forwards;
         }
     </style>
 </head>
 <body>
 
-    <!-- ব্যাকগ্রাউন্ড নিয়ন লাইটস -->
-    <div class="bg-glow-1"></div>
-    <div class="bg-glow-2"></div>
+    <div class="bg-matrix" id="matrix"></div>
 
-    <div class="container">
+    <div class="main-layout">
+        <img src="profile.png" alt="Profile" class="profile-img" onerror="this.src='https://via.placeholder.com/150'">
         
-        <!-- 🤵 আইকন সেকশন (নামের ঠিক ওপরে, একদম মাঝামাঝি) -->
-        <div class="avatar-section">
-            <div class="premium-avatar-wrapper">
-                <div class="premium-avatar">
-                    <i class="fas fa-user-tie"></i>
-                </div>
-            </div>
+        <h1><span id="type-name"></span><span id="cursor-name" class="typed-cursor">|</span></h1>
+        <p class="bio"><span id="type-bio"></span><span id="cursor-bio" class="typed-cursor" style="display:none;">|</span></p>
+
+        <div class="links-container">
+            <div onclick="tapLink('https://wa.me/8801917757634', this)" class="link-btn whatsapp btn-1"><i class="fab fa-whatsapp"></i> WhatsApp</div>
+            <div onclick="tapLink('https://www.facebook.com/profile.php?id=100000422314350', this)" class="link-btn facebook btn-2"><i class="fab fa-facebook-f"></i> Facebook</div>
+            <div onclick="tapLink('https://www.instagram.com/asadulislamhasan143', this)" class="link-btn instagram btn-3"><i class="fab fa-instagram"></i> Instagram</div>
+            <div onclick="tapLink('https://www.tiktok.com/@asadulislamhasan143', this)" class="link-btn tiktok btn-4"><i class="fab fa-tiktok"></i> TikTok</div>
         </div>
 
-        <!-- প্রোফাইল মেইন ইনফো -->
-        <div class="profile-info">
-            <h1>Asadul Islam <span>Hasan</span></h1>
-            <!-- ২ লাইনে লকড ডেসক্রিপশন -->
-            <div class="bio">
-                Just a simple person who loves to live life cheerfully and values true connections. Feel free to reach out and connect through my profiles below!
-            </div>
-        </div>
-
-        <!-- আকর্ষণীয় এনিমেটেড বাটনসমূহ -->
-        <div class="links-wrapper">
-            
-            <!-- WhatsApp -->
-            <a href="https://wa.me/8801917757634" target="_blank" class="social-link whatsapp">
-                <div class="link-content">
-                    <i class="fab fa-whatsapp" style="color: #25d366;"></i>
-                    <span>WhatsApp</span>
-                </div>
-                <i class="fas fa-chevron-right arrow-icon"></i>
-            </a>
-
-            <!-- Facebook -->
-            <a href="https://www.facebook.com/profile.php?id=100000422314350" target="_blank" class="social-link facebook">
-                <div class="link-content">
-                    <i class="fab fa-facebook-f" style="color: #1877f2;"></i>
-                    <span>Facebook</span>
-                </div>
-                <i class="fas fa-chevron-right arrow-icon"></i>
-            </a>
-
-            <!-- Instagram -->
-            <a href="https://www.instagram.com/asadulislamhasan143" target="_blank" class="social-link instagram">
-                <div class="link-content">
-                    <i class="fab fa-instagram" style="color: #e1306c;"></i>
-                    <span>Instagram</span>
-                </div>
-                <i class="fas fa-chevron-right arrow-icon"></i>
-            </a>
-
-            <!-- Tiktok -->
-            <a href="https://www.tiktok.com/@asadulislamhasan143" target="_blank" class="social-link tiktok">
-                <div class="link-content">
-                    <i class="fab fa-tiktok" style="color: #ffffff;"></i>
-                    <span>TikTok</span>
-                </div>
-                <i class="fas fa-chevron-right arrow-icon"></i>
-            </a>
-
-        </div>
-
-        <!-- ফুটার -->
         <div class="footer">
-            © 2026 ASADUL ISLAM HASAN
+            <p>⚡ Tap to Connect ⚡</p>
         </div>
     </div>
+
+    <script>
+        const nameText = "Asadul Islam Hasan";
+        const bioText = "Living a simple life with extraordinary dreams.\nWelcome to my digital space.";
+        
+        // ব্যাকগ্রাউন্ডের জন্য শব্দের তালিকা
+        const wordsArray = ["HASAN", "NFC", "CONNECT", "DIGITAL", "SOCIAL", "LINK", "TAP", "WAVE", "SHARE", "PROFILE"];
+
+        function initPage() {
+            // ১. ব্যাকগ্রাউন্ডে পুরো স্ক্রিন জুড়ে ঘন করে শব্দ বসানোর লুপ
+            const matrix = document.getElementById("matrix");
+            const totalWordsNeeded = 350; // পুরো স্ক্রিন কাভার করার জন্য যথেষ্ট শব্দ
+            
+            let matrixHTML = "";
+            for (let i = 0; i < totalWordsNeeded; i++) {
+                // র্যান্ডমলি শব্দ সিলেক্ট করা
+                const randomWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+                matrixHTML += `<span class="bg-word">${randomWord}</span>`;
+            }
+            matrix.innerHTML = matrixHTML;
+
+            // ২. টাইপিং অ্যানিমেশন শুরু
+            startTyping();
+        }
+
+        function startTyping() {
+            let nameIndex = 0;
+            let bioIndex = 0;
+            const nameTarget = document.getElementById("type-name");
+            const bioTarget = document.getElementById("type-bio");
+            const nameCursor = document.getElementById("cursor-name");
+            const bioCursor = document.getElementById("cursor-bio");
+
+            function typeName() {
+                if (nameIndex < nameText.length) {
+                    nameTarget.innerHTML += nameText.charAt(nameIndex);
+                    nameIndex++;
+                    setTimeout(typeName, 50);
+                } else {
+                    nameCursor.style.display = "none";
+                    bioCursor.style.display = "inline";
+                    typeBio();
+                }
+            }
+
+            function typeBio() {
+                if (bioIndex < bioText.length) {
+                    if (bioText.charAt(bioIndex) === '\n') {
+                        bioTarget.innerHTML += '<br>';
+                    } else {
+                        bioTarget.innerHTML += bioText.charAt(bioIndex);
+                    }
+                    bioIndex++;
+                    setTimeout(typeBio, 30);
+                } else {
+                    bioCursor.style.display = "none";
+                }
+            }
+
+            typeName();
+        }
+
+        // পেজ লোড সম্পন্ন হওয়ার সাথে সাথে সব রান হবে
+        document.addEventListener("DOMContentLoaded", initPage);
+
+        function tapLink(url, element) {
+            element.classList.add('clicked');
+            setTimeout(function() {
+                window.open(url, '_blank');
+                element.classList.remove('clicked');
+            }, 300); 
+        }
+    </script>
 
 </body>
 </html>
