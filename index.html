@@ -15,8 +15,8 @@
         }
 
         body {
-            /* ১. শুধুমাত্র আপনার ছবি ব্যাকগ্রাউন্ডে থাকবে (কোনো টেক্সট বা ইফেক্ট ছাড়া) */
-            background-image: linear-gradient(rgba(4, 6, 13, 0.75), rgba(4, 6, 13, 0.75)), url('background.png'); 
+            /* কোডের সব কালার ও ওভারলে বাদ - শুধুমাত্র আপনার দেওয়া ছবিটিই ব্যাকগ্রাউন্ড */
+            background-image: url('background.png'); 
             background-size: cover; /* পিসি ও মোবাইলে ছবিটিকে নিখুঁত সাইজে ফিট রাখবে */
             background-position: center; /* ছবিটিকে সবসময় স্ক্রিনের মাঝে রাখবে */
             background-repeat: no-repeat;
@@ -34,14 +34,14 @@
         /* Main Layout - পিসি ও মোবাইলের ঠিক মাঝামাঝি লক করা */
         .main-layout {
             width: 100%;
-            max-width: 385px; /* পিসিতে দেখার জন্য স্ট্যান্ডার্ড প্রিমিয়াম সাইজ */
+            max-width: 385px; 
             padding: 20px 25px;
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             z-index: 1;
-            margin-top: -20px; /* ওপরে ও নিচের খালি জায়গা সমান রাখার ব্যালেন্স */
+            margin-top: -20px; 
         }
 
         /* প্রোফাইল ইমেজের অনবরত ভাসমান অ্যানিমেশন */
