@@ -15,9 +15,9 @@
         }
 
         body {
-            /* ব্যাকগ্রাউন্ড পুরোপুরি কালো এবং তার ওপরে আপনার PNG ছবি */
+            /* ব্যাকগ্রাউন্ডে আপনার 8082.png ছবিটি সেট করা হলো */
             background-color: #000000; 
-            background-image: url('background.png');
+            background-image: url('8082.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -32,17 +32,37 @@
             position: relative;
         }
 
-        /* Main Layout - পিসি ও মোবাইলের ঠিক মাঝামাঝি লক করা */
-        .main-layout {
+        /* ডার্ক ওভারলে: এটি সাদা ডুডলগুলোকে হালকা কালো পর্দার আড়ালে নিয়ে যাবে */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65); /* ৬০% কালো পর্দা */
+            z-index: 0;
+        }
+
+        /* Main Layout - প্রিমিয়াম গ্লাস ইফেক্ট (Frosted Glass) */
+        .main-layout {
+            width: 90%;
             max-width: 385px; 
-            padding: 20px 25px;
+            padding: 30px 25px;
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             z-index: 1;
-            margin-top: -20px; 
+            margin-top: -10px;
+            
+            /* কাচের মতো ঝাপসা ব্যাকগ্রাউন্ড ইফেক্ট */
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
 
         /* প্রোফাইল ইমেজের অনবরত ভাসমান অ্যানিমেশন */
@@ -87,16 +107,16 @@
             margin-bottom: 4px;
             letter-spacing: 0.5px;
             color: #ffffff;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.9);
+            text-shadow: 0 2px 10px rgba(0,0,0,1); /* টেক্সটের পেছনে ড্রপ শ্যাডো */
         }
         
         .bio { 
-            color: #e2e8f0; 
+            color: #f1f5f9; 
             font-size: 0.92rem; 
             line-height: 1.45;
             height: 53px; 
             font-weight: 400;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+            text-shadow: 0 2px 8px rgba(0,0,0,1);
         }
 
         /* টাইপিং কার্সার ব্লিংকিং */
@@ -120,7 +140,7 @@
             border-radius: 16px;
             font-size: 1.05rem;
             letter-spacing: 0.5px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -128,7 +148,7 @@
             cursor: pointer;
             text-decoration: none; 
             position: relative;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
             opacity: 0;
             animation: slideUpFast 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2) forwards;
         }
@@ -146,8 +166,8 @@
         }
 
         /* Premium Gradients */
-        .whatsapp { background: linear-gradient(45deg, #11998e, #25D366, #38ef7d); }
-        .facebook { background: linear-gradient(45deg, #00c6ff, #1877F2, #0072ff); }
+        .whatsapp { background: linear-gradient(45deg, #11998e, #25D366); }
+        .facebook { background: linear-gradient(45deg, #00c6ff, #1877F2); }
         .instagram { background: linear-gradient(45deg, #fdbb2d, #dc2743, #bc1888); }
         .tiktok { background: linear-gradient(45deg, #ff007f, #000000, #00f2fe); }
         .phone-call { background: linear-gradient(45deg, #FF416C, #FF4B2B); } 
@@ -190,7 +210,7 @@
         </div>
     </div>
 
-    <!-- টাইপিং অ্যানিমেশন স্ক্রিপ্ট -->
+    <!-- টাইপিং স্ক্রিপ্ট -->
     <script>
         const nameText = "Asadul Islam Hasan";
         const bioText = "Living a simple life with extraordinary dreams.\nWelcome to my digital space.";
