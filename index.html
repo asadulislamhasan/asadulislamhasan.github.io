@@ -15,7 +15,8 @@
         }
 
         body {
-            /* কোড থেকে ব্যাকগ্রাউন্ডের সব কালার সম্পূর্ণ বাদ */
+            /* কোড থেকে ব্যাকগ্রাউন্ডের সব কালার সম্পূর্ণ বাদ ও স্বচ্ছ করা হলো */
+            background-color: transparent !important;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -165,16 +166,13 @@
 <body>
 
     <div class="main-layout">
-        <!-- প্রোফাইল পিকচার -->
         <img src="profile.png" alt="Profile" class="profile-img" onerror="this.src='https://via.placeholder.com/150'">
         
-        <!-- ফিক্সড টেক্সট কন্টেইনার -->
         <div class="text-container">
             <h1><span id="type-name"></span><span id="cursor-name" class="typed-cursor">|</span></h1>
-            <p class="bio"><span id="type-bio"></span><span id="cursor-bio" class="typed-cursor" style="display:none;">|</span></p>
+            <p class="bio"><span id="type-bio"></span><span id="cursor-doc" class="typed-cursor" style="display:none;">|</span></p>
         </div>
 
-        <!-- সোশ্যাল ও কল বাটনসমূহ -->
         <div class="links-container">
             <div onclick="tapLink('https://wa.me/8801917757634', this)" class="link-btn whatsapp btn-1"><i class="fab fa-whatsapp"></i> WhatsApp</div>
             <div onclick="tapLink('https://www.facebook.com/profile.php?id=100000422314350', this)" class="link-btn facebook btn-2"><i class="fab fa-facebook-f"></i> Facebook</div>
@@ -188,20 +186,19 @@
         </div>
     </div>
 
-    <!-- স্ক্রিপ্ট -->
     <script>
         const nameText = "Asadul Islam Hasan";
         const bioText = "Living a simple life with extraordinary dreams.\nWelcome to my digital space.";
 
-        // গিটহাব পেজেসের ক্যাশ মেমরি বাইপাস করে ব্যাকগ্রাউন্ড লোড করার ফাংশন
+        // একই ফোল্ডারে থাকা background.png ফাইলটিকে সরাসরি ও ক্যাশ বাইপাস করে লোড করার ফাংশন
         function loadBackgroundDirectly() {
-            // ফাইলের নামের শেষে একটি র্যান্ডম নাম্বার (Timestamp) জুড়ে দেওয়া হচ্ছে যেন ব্রাউজার বাধ্য হয়ে নতুন ফাইলটাই সার্ভার থেকে ডাউনলোড করে
+            // ফাইলের নামের শেষে একটি র্যান্ডম টাইমস্ট্যাম্প জুড়ে দেওয়া হচ্ছে যেন ব্রাউজার পুরনো ক্যাশ ভুলে নতুন ফাইলটি লোড করে
             const uniqueImgUrl = 'background.png?v=' + new Date().getTime();
             document.body.style.backgroundImage = "url('" + uniqueImgUrl + "')";
         }
 
         function initPage() {
-            loadBackgroundDirectly(); // সরাসরি ব্যাকগ্রাউন্ড পুশ
+            loadBackgroundDirectly(); // সরাসরি ব্যাকগ্রাউন্ড ইমেজ পুশ
             startTyping();
         }
 
@@ -211,7 +208,7 @@
             const nameTarget = document.getElementById("type-name");
             const bioTarget = document.getElementById("type-bio");
             const nameCursor = document.getElementById("cursor-name");
-            const bioCursor = document.getElementById("cursor-bio");
+            const bioCursor = document.getElementById("cursor-doc");
 
             function typeName() {
                 if (nameIndex < nameText.length) {
@@ -219,7 +216,7 @@
                     nameIndex++;
                     setTimeout(typeName, 45);
                 } else {
-                    nameCursor.style.display = "none";
+                    nameCursor.style.style.display = "none";
                     bioCursor.style.display = "inline";
                     typeBio();
                 }
