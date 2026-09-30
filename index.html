@@ -1,278 +1,709 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Asadul Islam Hasan | Connect</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Happy Birthday My Love</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Hind+Siliguri:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Hind Siliguri', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
-        body {
-            /* ব্যাকগ্রাউন্ডে আপনার 8082.png ছবিটি সেট করা হলো */
-            background-color: #000000; 
-            background-image: url('8082.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #ffffff;
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #030005;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
+            color: #ffffff;
             position: relative;
         }
 
-        /* ডার্ক ওভারলে: এটি সাদা ডুডলগুলোকে হালকা কালো পর্দার আড়ালে নিয়ে যাবে */
-        body::before {
-            content: '';
-            position: absolute;
+        /* ৪ পাশ থেকে অন্ধকারের ওভারলে */
+        .darkness-overlay {
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.65); /* ৬০% কালো পর্দা */
-            z-index: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 100;
+            box-shadow: inset 0 0 0vw 0vw rgba(0, 0, 0, 1);
+            transition: box-shadow 1s cubic-bezier(0.7, 0, 0.3, 1), background-color 1s ease;
         }
 
-        /* Main Layout - প্রিমিয়াম গ্লাস ইফেক্ট (Frosted Glass) */
-        .main-layout {
-            width: 90%;
-            max-width: 385px; 
-            padding: 30px 25px;
-            text-align: center;
+        .darkness-overlay.active {
+            box-shadow: inset 0 0 100vw 50vw rgba(0, 0, 0, 1);
+            background-color: #000000;
+        }
+
+        /* ওপরের কেন্দ্রীয় স্পটলাইট */
+        .top-light-beam {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0vw;
+            height: 0vh;
+            background: radial-gradient(ellipse at top, rgba(255, 120, 160, 0.7) 0%, rgba(255, 42, 109, 0.3) 50%, transparent 80%);
+            pointer-events: none;
+            z-index: 2;
+            opacity: 0;
+            border-radius: 0 0 50% 50%;
+            transition: opacity 0.2s ease;
+        }
+
+        body.lights-on .top-light-beam {
+            opacity: 1;
+            animation: topLightExpand 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        }
+
+        @keyframes topLightExpand {
+            0% { width: 5vw; height: 5vh; opacity: 0.2; filter: brightness(2); }
+            40% { width: 60vw; height: 50vh; opacity: 0.8; }
+            100% { width: 200vw; height: 150vh; opacity: 1; filter: brightness(1); }
+        }
+
+        body.lights-on {
+            background: radial-gradient(circle at top center, #3d0020 0%, #05000a 100%);
+            transition: background 1.2s ease;
+        }
+
+        /* ভাসমান ব্যাকগ্রাউন্ড ভেক্টর ও স্টার */
+        .bg-element {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            will-change: transform, opacity;
+            animation: floatUp 5s linear infinite;
+        }
+
+        .bg-heart {
+            width: 18px;
+            height: 18px;
+            fill: #ff4b72;
+            filter: drop-shadow(0 0 8px #ff1e56);
+        }
+
+        .bg-star {
+            width: 12px;
+            height: 12px;
+            fill: #ffd700;
+            filter: drop-shadow(0 0 8px #ffb700);
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) scale(0.4) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.85; }
+            80% { opacity: 0.85; }
+            100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
+        }
+
+        /* মূল কার্ড কন্টেইনার */
+        .card-container {
+            background: rgba(255, 255, 255, 0.035);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 182, 193, 0.22);
+            border-radius: 28px;
+            padding: 35px 24px;
+            width: 88%;
+            max-width: 450px;
+            max-height: 90vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            z-index: 1;
-            margin-top: -10px;
-            
-            /* কাচের মতো ঝাপসা ব্যাকগ্রাউন্ড ইফেক্ট */
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.95), 0 0 40px rgba(255, 65, 108, 0.15);
+            text-align: center;
+            z-index: 10;
+            position: relative;
         }
 
-        /* প্রোফাইল ইমেজের অনবরত ভাসমান অ্যানিমেশন */
-        @keyframes floatImage {
-            0% { transform: translateY(0); box-shadow: 0 0 20px rgba(0, 242, 254, 0.2); border-color: #00f2fe; }
-            50% { transform: translateY(-8px); box-shadow: 0 0 35px rgba(0, 242, 254, 0.4); border-color: #ff007f; }
-            100% { transform: translateY(0); box-shadow: 0 0 20px rgba(0, 242, 254, 0.2); border-color: #00f2fe; }
+        .step {
+            display: none;
+            width: 100%;
+            animation: stepFade 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
-        /* নিচ থেকে ওপরে ওঠার দ্রুত এন্ট্রি অ্যানিমেশন */
-        @keyframes slideUpFast {
-            from { opacity: 0; transform: translateY(40px); }
+        .step.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes stepFade {
+            from { opacity: 0; transform: translateY(18px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* প্রোফাইল পিকচার */
-        .profile-img {
-            width: 115px;
-            height: 115px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 20px auto;
-            border: 3.5px solid #00f2fe;
-            animation: floatImage 4s infinite ease-in-out, slideUpFast 0.5s ease-out;
-            display: block;
-        }
-
-        /* টাইপিং টেক্সটের জন্য ফিক্সড হাইট কন্টেইনার */
-        .text-container {
-            height: 95px; 
-            margin-bottom: 25px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
+        /* টাইপোগ্রাফি ও ফন্ট */
         h1 {
-            font-size: 1.7rem;
-            font-weight: 700;
-            height: 38px; 
-            margin-bottom: 4px;
-            letter-spacing: 0.5px;
-            color: #ffffff;
-            text-shadow: 0 2px 10px rgba(0,0,0,1); /* টেক্সটের পেছনে ড্রপ শ্যাডো */
-        }
-        
-        .bio { 
-            color: #f1f5f9; 
-            font-size: 0.92rem; 
-            line-height: 1.45;
-            height: 53px; 
-            font-weight: 400;
-            text-shadow: 0 2px 8px rgba(0,0,0,1);
-        }
-
-        /* টাইপিং কার্সার ব্লিংকিং */
-        .typed-cursor {
-            font-weight: bold;
-            color: #00f2fe;
-            animation: blink 0.7s infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-
-        .links-container { display: flex; flex-direction: column; gap: 14px; }
-
-        /* বাটনগুলোর প্রিমিয়াম স্টাইল */
-        .link-btn {
-            padding: 15px;
-            color: white;
+            font-size: 1.6rem;
+            color: #ffe0e9;
             font-weight: 600;
-            border-radius: 16px;
-            font-size: 1.05rem;
             letter-spacing: 0.5px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            cursor: pointer;
-            text-decoration: none; 
+            margin-bottom: 2px;
+            text-shadow: 0 2px 10px rgba(255, 117, 140, 0.2);
+        }
+
+        .name-highlight {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-style: italic;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 50%, #fecfef 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin: 0px 0 10px;
+            text-shadow: 0 0 25px rgba(255, 117, 140, 0.4);
+        }
+
+        /* অনন্য ৩D অ্যানিমেটেড গিফট বক্স - Fix Click Issue */
+        .gift-container {
             position: relative;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            opacity: 0;
-            animation: slideUpFast 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2) forwards;
+            width: 150px;
+            height: 150px;
+            margin: 20px auto 30px;
+            cursor: pointer;
+            z-index: 50;
+            user-select: none;
+            pointer-events: auto !important;
         }
 
-        /* বাটন এন্ট্রি টাইমিং */
-        .btn-1 { animation-delay: 0.35s; }
-        .btn-2 { animation-delay: 0.48s; }
-        .btn-3 { animation-delay: 0.61s; }
-        .btn-4 { animation-delay: 0.74s; }
-        .btn-5 { animation-delay: 0.87s; } 
-
-        .link-btn.clicked {
-            transform: scale(0.93);
-            filter: brightness(1.3);
+        .gift-box {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            animation: giftFloat 2.5s ease-in-out infinite alternate;
         }
 
-        /* Premium Gradients */
-        .whatsapp { background: linear-gradient(45deg, #11998e, #25D366); }
-        .facebook { background: linear-gradient(45deg, #00c6ff, #1877F2); }
-        .instagram { background: linear-gradient(45deg, #fdbb2d, #dc2743, #bc1888); }
-        .tiktok { background: linear-gradient(45deg, #ff007f, #000000, #00f2fe); }
-        .phone-call { background: linear-gradient(45deg, #FF416C, #FF4B2B); } 
-        
-        .footer { 
-            margin-top: 25px; 
-            font-size: 0.75rem; 
-            color: #cbd5e1; 
-            letter-spacing: 2px; 
-            text-transform: uppercase;
+        @keyframes giftFloat {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(-1.5deg); }
+            100% { transform: translateY(-4px) rotate(1.5deg); }
+        }
+
+        .gift-body {
+            position: absolute;
+            bottom: 5px;
+            left: 15px;
+            width: 120px;
+            height: 85px;
+            background: linear-gradient(135deg, #ff2a6d, #e0115f);
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 15px 35px rgba(255, 42, 109, 0.6);
+            overflow: hidden;
+        }
+
+        .gift-body-ribbon {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 100%;
+            background: linear-gradient(to right, #ffe066, #ffd700, #ffb700);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .gift-lid {
+            position: absolute;
+            top: 30px;
+            left: 7px;
+            width: 136px;
+            height: 32px;
+            background: linear-gradient(135deg, #ff527b, #ff2a6d);
+            border-radius: 8px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+            transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 2;
+        }
+
+        .gift-lid-ribbon {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 100%;
+            background: linear-gradient(to right, #ffe066, #ffd700, #ffb700);
+        }
+
+        .gift-bow {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 25px;
+        }
+
+        .bow-left, .bow-right {
+            position: absolute;
+            width: 24px;
+            height: 20px;
+            border: 4px solid #ffd700;
+            border-radius: 50% 50% 0 50%;
+            top: 0;
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+        }
+
+        .bow-left { left: 2px; transform: rotate(-20deg); }
+        .bow-right { right: 2px; transform: rotate(20deg) scaleX(-1); }
+
+        .bow-center {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: #ffe066;
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(0,0,0,0.3);
+        }
+
+        /* ক্লিক বা ট্যাপের ওপেনিং অ্যানিমেশন */
+        .gift-container.open .gift-lid {
+            transform: translateY(-80px) rotate(-20deg) scale(1.08);
+            opacity: 0.9;
+        }
+
+        /* ৬০ FPS হাইপার-স্মুথ "I Love You" অ্যানিমেশন */
+        .love-title-wrap {
+            margin-bottom: 15px;
+            will-change: transform;
+            animation: smoothFloat 4s ease-in-out infinite alternate;
+        }
+
+        .love-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.8rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ff2a6d 0%, #ff758c 40%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 12px rgba(255, 42, 109, 0.7));
+            will-change: filter;
+            animation: ultraSmoothGlow 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes ultraSmoothGlow {
+            0% { filter: drop-shadow(0 0 10px rgba(255, 42, 109, 0.6)) drop-shadow(0 0 20px rgba(255, 117, 140, 0.3)); }
+            100% { filter: drop-shadow(0 0 22px rgba(255, 42, 109, 0.95)) drop-shadow(0 0 40px rgba(255, 117, 140, 0.7)); }
+        }
+
+        @keyframes smoothFloat {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-6px); }
+        }
+
+        p.subtitle {
+            font-size: 0.98rem;
+            color: #e8d0da;
+            margin-bottom: 18px;
+            line-height: 1.65;
+            font-weight: 300;
+        }
+
+        /* ৩D কেক ও অন্ধকার ঘরের পরিবেশ */
+        .cake-container {
+            position: relative;
+            width: 160px;
+            height: 130px;
+            margin: 10px auto 25px;
+            cursor: pointer;
+            z-index: 50;
+            pointer-events: auto;
+        }
+
+        .plate {
+            width: 180px;
+            height: 8px;
+            background: linear-gradient(to right, #555, #eee, #555);
+            border-radius: 8px;
+            position: absolute;
+            bottom: 0;
+            left: -10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+        }
+
+        .layer {
+            position: absolute;
+            width: 100%;
+            border-radius: 8px 8px 4px 4px;
+        }
+
+        .layer-bottom {
+            width: 140px;
+            height: 38px;
+            background: linear-gradient(to right, #4a001f, #8a133e, #4a001f);
+            bottom: 8px;
+            left: 10px;
+        }
+
+        .layer-middle {
+            width: 110px;
+            height: 32px;
+            background: linear-gradient(to right, #ff4b72, #ff8da1, #ff4b72);
+            bottom: 46px;
+            left: 25px;
+        }
+
+        .layer-top {
+            width: 80px;
+            height: 28px;
+            background: linear-gradient(to right, #ffffff, #ffe3ec, #ffffff);
+            bottom: 78px;
+            left: 40px;
+        }
+
+        .candle {
+            width: 6px;
+            height: 24px;
+            background: linear-gradient(to right, #ff2a6d, #ff6000);
+            position: absolute;
+            bottom: 106px;
+            left: 77px;
+            border-radius: 2px 2px 0 0;
+        }
+
+        .flame {
+            width: 14px;
+            height: 22px;
+            background: radial-gradient(ellipse at bottom, #ffffff 0%, #ffee55 30%, #ff8c00 75%, transparent 100%);
+            border-radius: 50% 50% 20% 20%;
+            position: absolute;
+            bottom: 130px;
+            left: 73px;
+            box-shadow: 
+                0 0 20px #ff8c00,
+                0 0 45px #ffee55,
+                0 0 80px rgba(255, 140, 0, 0.8),
+                0 0 140px rgba(255, 200, 50, 0.5);
+            animation: candleFlicker 0.15s infinite alternate;
+            transform-origin: center bottom;
+        }
+
+        .candle-room-glow {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 290px;
+            height: 290px;
+            background: radial-gradient(circle, rgba(255, 150, 50, 0.24) 0%, rgba(255, 80, 0, 0.08) 50%, transparent 75%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: ambientFlicker 0.2s infinite alternate;
+            transition: opacity 0.5s ease;
+        }
+
+        @keyframes candleFlicker {
+            0% { transform: scale(1) rotate(-1.5deg); }
+            100% { transform: scale(1.15) rotate(1.5deg); }
+        }
+
+        @keyframes ambientFlicker {
+            0% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.98); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.03); }
+        }
+
+        .flame.off, .candle-room-glow.off {
+            display: none;
+        }
+
+        .instruction-text {
+            font-size: 0.92rem;
+            color: #ff8da1;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            height: 20px;
+        }
+
+        /* গভীর আবেগের চিঠির বাক্স */
+        .letter-box {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid #ff2a6d;
+            padding: 22px 18px;
+            border-radius: 14px;
+            text-align: justify;
+            font-size: 1.02rem;
+            line-height: 1.95;
+            color: #f7e6ed;
+            margin-bottom: 25px;
+            box-shadow: inset 0 0 15px rgba(255, 42, 109, 0.12);
+            font-weight: 300;
+        }
+
+        .letter-box p {
+            margin-bottom: 12px;
+        }
+
+        .letter-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* বাটন */
+        .btn-container {
             opacity: 0;
-            animation: slideUpFast 0.5s ease-out 1.0s forwards;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+            transform: translateY(15px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .btn-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .btn-action {
+            background: linear-gradient(135deg, #ff2a6d 0%, #ff527b 100%);
+            color: #ffffff;
+            border: none;
+            padding: 13px 36px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 42, 109, 0.45);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2deg);
+            box-shadow: 0 12px 30px rgba(255, 42, 109, 0.7);
         }
     </style>
 </head>
 <body>
 
-    <div class="main-layout">
-        <!-- প্রোফাইল পিকচার -->
-        <img src="profile.png" alt="Profile" class="profile-img" onerror="this.src='https://via.placeholder.com/150'">
-        
-        <!-- ফিক্সড টেক্সট কন্টেইনার -->
-        <div class="text-container">
-            <h1><span id="type-name"></span><span id="cursor-name" class="typed-cursor">|</span></h1>
-            <p class="bio"><span id="type-bio"></span><span id="cursor-bio" class="typed-cursor" style="display:none;">|</span></p>
+    <!-- ৪ পাশ থেকে অন্ধকারের ওভারলে -->
+    <div class="darkness-overlay" id="darknessOverlay"></div>
+
+    <!-- ওপরের সেন্ট্রাল স্পটলাইট -->
+    <div class="top-light-beam"></div>
+
+    <!-- মূল কার্ড কন্টেইনার -->
+    <div class="card-container" id="cardContainer">
+
+        <!-- মোমবাতির চারপাশের গ্লো -->
+        <div class="candle-room-glow" id="roomGlow"></div>
+
+        <!-- ধাপ 0: ৩D অ্যানিমেটেড গিফট বক্স -->
+        <div class="step active" id="step0">
+            <h1>তোমার জন্য বিশেষ অনুভূতির উপহার</h1>
+            <span class="name-highlight">My Princess</span>
+            <p class="subtitle">আমার হৃদয়ের গোপন কোণে লুকিয়ে রাখা ভালোবাসা। বাক্সটিতে স্পর্শ করে উন্মোচন করো...</p>
+
+            <div class="gift-container" id="giftBox">
+                <div class="gift-box">
+                    <div class="gift-lid">
+                        <div class="gift-bow">
+                            <div class="bow-left"></div>
+                            <div class="bow-right"></div>
+                            <div class="bow-center"></div>
+                        </div>
+                        <div class="gift-lid-ribbon"></div>
+                    </div>
+                    <div class="gift-body">
+                        <div class="gift-body-ribbon"></div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="instruction-text">উপহারের বাক্সটিতে স্পর্শ করুন</p>
         </div>
 
-        <!-- সোশ্যাল ও কল বাটনসমূহ -->
-        <div class="links-container">
-            <div onclick="tapLink('https://wa.me/8801917757634', this)" class="link-btn whatsapp btn-1"><i class="fab fa-whatsapp"></i> WhatsApp</div>
-            <div onclick="tapLink('https://www.facebook.com/profile.php?id=100000422314350', this)" class="link-btn facebook btn-2"><i class="fab fa-facebook-f"></i> Facebook</div>
-            <div onclick="tapLink('https://www.instagram.com/asadulislamhasan143', this)" class="link-btn instagram btn-3"><i class="fab fa-instagram"></i> Instagram</div>
-            <div onclick="tapLink('https://www.tiktok.com/@asadulislamhasan143', this)" class="link-btn tiktok btn-4"><i class="fab fa-tiktok"></i> TikTok</div>
-            <a href="tel:+8801917757634" onclick="clickAnimation(this)" class="link-btn phone-call btn-5"><i class="fas fa-phone-alt"></i> Call Me</a>
+        <!-- ধাপ ১: কেক ও স্পটলাইট ট্রানজিশন -->
+        <div class="step" id="step1">
+            <h1>শুভ জন্মদিন, আমার অর্ধাঙ্গিনী</h1>
+            <span class="name-highlight">My Heartbeat</span>
+            <p class="subtitle">আমার জীবনের প্রতিটি অন্ধকার দূর করে ভালোবাসার সুবাস ছড়িয়ে দেওয়া প্রিয় মানবী তুমি...</p>
+
+            <div class="cake-container" id="cakeBox">
+                <div class="flame" id="flame"></div>
+                <div class="candle"></div>
+                <div class="layer layer-top"></div>
+                <div class="layer layer-middle"></div>
+                <div class="layer layer-bottom"></div>
+                <div class="plate"></div>
+            </div>
+
+            <p class="instruction-text" id="statusText">কেকে স্পর্শ করে আলো ছড়িয়ে দাও</p>
+
+            <div class="btn-container" id="btnContainer1">
+                <button class="btn-action" onclick="nextStep(2)">হৃদয়ের গোপন চিঠিটি পড়ুন</button>
+            </div>
         </div>
 
-        <div class="footer">
-            <p>⚡ Tap to Connect ⚡</p>
+        <!-- ধাপ ২: পরিমার্জিত রোমান্টিক চিরকুট -->
+        <div class="step" id="step2">
+            <h1>অনুভূতির ডায়েরি থেকে</h1>
+            <span class="name-highlight" style="font-size: 2.3rem;">My Beloved</span>
+
+            <div class="letter-box">
+                <p>
+                    আল্লাহ তাআলার দরবারে অশেষ শুকরিয়া, তিনি আমাকে তোমার মতো একজন গুণবতী, মায়াবী ও নিখাদ ভালোবাসায় ভরা জীবনসঙ্গিনী দান করেছেন। তোমার ওই স্নিগ্ধ হাসি আর মায়াবী চাহনির দিকে তাকালে আমার সমস্ত ক্লান্তি আর বিষাদ এক নিমেষে দূর হয়ে যায়।
+                </p>
+                <p>
+                    আজকের এই বরকতময় দিনে প্রার্থনা করি, পরম করুণাময় আল্লাহ তোমার জীবনকে অফুরন্ত আনন্দ, প্রশান্তি ও সুস্বাস্থ্য দিয়ে ভরিয়ে দিক।
+                </p>
+            </div>
+
+            <button class="btn-action" onclick="nextStep(3)">শেষ সারপ্রাইজ দেখুন</button>
         </div>
+
+        <!-- ধাপ ৩: আই লাভ ইউ (৬০ FPS স্মুথ অ্যানিমেশন) -->
+        <div class="step" id="step3">
+            <div class="love-title-wrap">
+                <div class="love-title">I Love You Always</div>
+            </div>
+
+            <div class="letter-box" style="text-align: center; border-left: none; border-top: 3px solid #ff2a6d;">
+                <p style="font-size: 1.15rem; color: #ffb3c1; font-weight: 600; line-height: 1.8;">
+                    "শুধু এই পৃথিবীর পথচলায় নয়,<br>
+                    জান্নাতের চিরন্তন নিড়েও তোমাকেই পাশে চাই।"
+                </p>
+                <p style="margin-top: 14px; color: #d0c0c7; font-size: 0.95rem;">
+                    জীবনের প্রতিটি মোড়ে আমৃত্যু তোমার হাতটি এভাবেই শক্ত করে ধরে রাখবো। শুভ জন্মদিন, আমার ভালোবাসার অনন্য ঠিকানা!
+                </p>
+            </div>
+
+            <button class="btn-action" onclick="nextStep(0)">পুনরায় দেখুন</button>
+        </div>
+
     </div>
 
-    <!-- টাইপিং স্ক্রিপ্ট -->
     <script>
-        const nameText = "Asadul Islam Hasan";
-        const bioText = "Living a simple life with extraordinary dreams.\nWelcome to my digital space.";
-
-        function initPage() {
-            startTyping();
-        }
-
-        function startTyping() {
-            let nameIndex = 0;
-            let bioIndex = 0;
-            const nameTarget = document.getElementById("type-name");
-            const bioTarget = document.getElementById("type-bio");
-            const nameCursor = document.getElementById("cursor-name");
-            const bioCursor = document.getElementById("cursor-bio");
-
-            function typeName() {
-                if (nameIndex < nameText.length) {
-                    nameTarget.innerHTML += nameText.charAt(nameIndex);
-                    nameIndex++;
-                    setTimeout(typeName, 45);
-                } else {
-                    nameCursor.style.display = "none";
-                    bioCursor.style.display = "inline";
-                    typeBio();
-                }
+        // ব্যাকগ্রাউন্ডের অ্যানিমেটেড Love Graphics & Star Creator
+        function createBgElements() {
+            const el = document.createElement('div');
+            el.classList.add('bg-element');
+            
+            const isStar = Math.random() > 0.5;
+            if (isStar) {
+                el.innerHTML = `<svg class="bg-star" viewBox="0 0 24 24"><path d="M12 0L15.09 8.26L24 9.27L17.18 15.14L19.27 24L12 19.34L4.73 24L6.82 15.14L0 9.27L8.91 8.26L12 0Z"/></svg>`;
+            } else {
+                el.innerHTML = `<svg class="bg-heart" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
             }
 
-            function typeBio() {
-                if (bioIndex < bioText.length) {
-                    if (bioText.charAt(bioIndex) === '\n') {
-                        bioTarget.innerHTML += '<br>';
-                    } else {
-                        bioTarget.innerHTML += bioText.charAt(bioIndex);
-                    }
-                    bioIndex++;
-                    setTimeout(typeBio, 25);
-                } else {
-                    bioCursor.style.display = "none";
-                }
+            el.style.left = Math.random() * 95 + 'vw';
+            el.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.body.appendChild(el);
+
+            setTimeout(() => { el.remove(); }, 7000);
+        }
+        setInterval(createBgElements, 250);
+
+        // গিফট বক্স ওপেন করার অ্যানিমেশন ও ট্রানজিশন - Event Listeners
+        const giftBox = document.getElementById('giftBox');
+        let isGiftOpened = false;
+
+        function handleGiftOpen(e) {
+            if (e) e.preventDefault();
+            if (isGiftOpened) return;
+            isGiftOpened = true;
+
+            giftBox.classList.add('open');
+
+            confetti({
+                particleCount: 65,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            setTimeout(() => {
+                nextStep(1);
+                isGiftOpened = false;
+                giftBox.classList.remove('open');
+            }, 750);
+        }
+
+        giftBox.addEventListener('click', handleGiftOpen);
+        giftBox.addEventListener('touchstart', handleGiftOpen, { passive: false });
+
+        // কেক কাটার সিকোয়েন্স - Event Listeners
+        const cakeBox = document.getElementById('cakeBox');
+        let executed = false;
+
+        function cutCakeSequence(e) {
+            if (e) e.preventDefault();
+            if (executed) return;
+            executed = true;
+
+            const flame = document.getElementById('flame');
+            const roomGlow = document.getElementById('roomGlow');
+            const statusText = document.getElementById('statusText');
+            const darknessOverlay = document.getElementById('darknessOverlay');
+            const btnContainer = document.getElementById('btnContainer1');
+
+            flame.classList.add('off');
+            roomGlow.classList.add('off');
+            statusText.innerText = "অন্ধকার নেমে আসছে...";
+
+            darknessOverlay.classList.add('active');
+
+            setTimeout(() => {
+                document.body.classList.add('lights-on');
+                darknessOverlay.style.opacity = '0';
+                statusText.innerText = "শুভ জন্মদিন, আমার ভালোবাসা!";
+                statusText.style.color = "#ff758c";
+
+                confetti({
+                    particleCount: 140,
+                    spread: 85,
+                    origin: { y: 0.6 }
+                });
+
+                setTimeout(() => {
+                    btnContainer.classList.add('visible');
+                }, 500);
+
+            }, 1000);
+        }
+
+        cakeBox.addEventListener('click', cutCakeSequence);
+        cakeBox.addEventListener('touchstart', cutCakeSequence, { passive: false });
+
+        // ধাপ পরিবর্তনের ফাংশন
+        function nextStep(stepNumber) {
+            if (stepNumber === 0) {
+                // রিসেট সিকোয়েন্স
+                executed = false;
+                document.body.classList.remove('lights-on');
+                const darknessOverlay = document.getElementById('darknessOverlay');
+                darknessOverlay.classList.remove('active');
+                darknessOverlay.style.opacity = '1';
+                document.getElementById('flame').classList.remove('off');
+                document.getElementById('roomGlow').classList.remove('off');
+                document.getElementById('btnContainer1').classList.remove('visible');
+                document.getElementById('statusText').innerText = "কেকে স্পর্শ করে আলো ছড়িয়ে দাও";
+                document.getElementById('statusText').style.color = "#ff8da1";
             }
 
-            typeName();
-        }
-
-        document.addEventListener("DOMContentLoaded", initPage);
-
-        function tapLink(url, element) {
-            element.classList.add('clicked');
-            setTimeout(function() {
-                window.open(url, '_blank');
-                element.classList.remove('clicked');
-            }, 300); 
-        }
-
-        function clickAnimation(element) {
-            element.classList.add('clicked');
-            setTimeout(function() {
-                element.classList.remove('clicked');
-            }, 300);
+            document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+            document.getElementById('step' + stepNumber).classList.add('active');
         }
     </script>
-
 </body>
 </html>
